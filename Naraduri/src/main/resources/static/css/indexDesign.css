@@ -1,0 +1,265 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+@font-face {
+    font-family: 'Pretendard-Thin';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard-ExtraLight';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-ExtraLight.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard-Light';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard-Medium';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard-SemiBold';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard-Bold';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard-ExtraBold';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-ExtraBold.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard-Black';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HakgyoansimAllimjangTTF-B';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimAllimjangTTF-B.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+h1 {
+    text-align: center;
+    font-family: 'HakgyoansimAllimjangTTF-B', sans-serif;
+    font-size: 3rem;
+    line-height: 0.7;
+    white-space: nowrap;
+    animation-duration: 1.5s;
+    animation-name: slidein;
+}
+
+img {
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+html {
+    font-family: 'Pretendard-ExtraBold', sans-serif;
+}
+
+/* 노멀라이즈 시작 */
+body, ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;		/* 해당 태그의 list-style을 none으로 하는 것으로 ●을 제거한다 */
+}
+
+body {
+    background-color: #ffffff;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+a {
+    color: inherit;		/* 부모 엘리먼트의 값을 물려받는다 */
+    text-decoration: none;	/* 해당 태그의 text-decoration을 none으로 하는 것으로 밑줄을 제거한다 */
+}
+/* 노멀라이즈 끝 */
+
+/* 라이브러리 시작 */
+.con {
+    margin-left: auto;
+    margin-right: auto;
+}
+/* 라이브러리 끝 */
+
+/* 커스텀 시작 */
+:root {
+    --site-width: 100%;
+}
+
+.con-min-width {
+    min-width: var(--site-width);
+}
+
+.top-bar > .con {
+    width: var(--site-width);
+}
+
+/* 드롭다운 메뉴 시작 */
+.top-bar__menu-box-1 > ul ul {
+    display: none;
+}
+
+.top-bar__menu-box-1 > ul > li {
+    display: inline-block;
+}
+
+.top-bar__menu-box-1 {
+    text-align: right;
+    margin-top: 0px;
+}
+
+.top-bar__menu-box-1 ul {
+    background-color: #4242cc;
+    color: greenyellow;
+    white-space: nowrap;
+}
+
+.top-bar__menu-box-1 ul > li > a {
+    display: block;
+    font-size: 2rem;
+    padding: 20px 50px;
+}
+
+.top-bar__menu-box-1 ul > li:hover > a {
+    background-color: #339933;
+    color: white;
+}
+
+.top-bar__menu-box-1 > ul > li {
+    position: relative;
+}
+
+.top-bar__menu-box-1 > ul > li > ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+}
+
+.top-bar__menu-box-1 > ul > li:hover > ul {
+    display: block;
+}
+/* 드롭다운 메뉴 끝 */
+
+.introduce_logo {
+    position: absolute;
+    margin-top: 450px;
+    flex-wrap: nowrap;
+    z-index : -1;
+    animation-delay: 2s;
+    animation-duration: 1.5s;
+    animation-name: slidein2;
+}
+
+.main_logo {
+    position: fixed;
+    margin-left: -46%;
+    text-align: left;
+    margin-top: 45px;
+}
+
+.side_logo_left {
+    position: absolute;
+    width: 750px;
+    height: 1000px;
+    margin-top: 350px;
+    margin-left: -50%;
+    z-index : -2;
+    background-size: 500px 1000px;
+}
+
+.side_logo_right {
+    position: absolute;
+    width: 750px;
+    height: 1000px;
+    margin-top: 350px;
+    margin-left: 50%;
+    z-index : -2;
+    background-size: contain;
+}
+
+.rectangle {
+    position: absolute;
+    width: 750px;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    z-index : -1;
+    display: flex;
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+    color: #fff;
+}
+
+@keyframes slidein {
+    from {
+        margin-top: 50%;
+        width: 100%;
+    }
+
+    to {
+        margin-top: 1.8%;
+        width: 100%;
+    }
+}
+
+@keyframes slidein {
+    from {
+        margin-top: 50%;
+    }
+
+    to {
+        margin-top: 1.8%;
+    }
+}
+
+footer {
+    width: 100%;
+    height: 140px; /* 내용물에 따라 알맞는 값 설정 */
+    bottom: 0px;
+    background-color: #38A800;
+    color: #fff;
+    text-align: center;
+    position: absolute;
+}
