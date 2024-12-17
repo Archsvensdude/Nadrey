@@ -1,0 +1,86 @@
+<link rel="icon" type="image/png" sizes="96x96" href="/image/favicon-96x96.png">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>회원정보 수정</title>
+    <link rel="stylesheet" href="/css/update.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+</head>
+<body>
+<div id="header-placeholder"></div>
+<br><br><br><br>
+<h1>회원정보 수정</h1>
+
+<form method="post" action="/login/update">
+    <label class="input-require for-name">본인의 이름을 변경해주세요.</label>
+    <input type="text" id="name" name="name" placeholder="이름" class="name_box" required>
+
+    <br><br>
+    <div class="input-container password">
+        <label class="input-require for-pwd">새 비밀번호를 입력해주세요.</label>
+        <label for="password"></label>
+        <input type="password" id="password" name="password" placeholder="새 비밀번호" class="new-pwd_box" required>
+        <br><br>
+        <label class="input-require for-confirm-pwd">비밀번호를 확인해주세요.</label>
+        <label for="confirmPassword"></label>
+        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="비밀번호 확인" class="confirm-pwd_box" required>
+        <p id="passwordMatchMessage" class="error-message"></p>
+    </div>
+
+    <br><br>
+    <label class="input-require for-birth">생년월일을 수정해주세요. (선택)</label>
+    <div class="birth-selection">
+        <select id="year" name="year" required>
+            <option value="">선택</option>
+            <script>
+                const currentYear = new Date().getFullYear();
+                for (let year = currentYear; year >= 1900; year--) {
+                    document.write(`<option value="${year}">${year}</option>`);
+                }
+            </script>
+        </select>
+        <label>&nbsp;년&nbsp;&nbsp;</label>
+        <select id="month" name="month" required>
+            <option value="">선택</option>
+            <script>
+                for (let month = 1; month <= 12; month++) {
+                    document.write(`<option value="${month < 10 ? '0' + month : month}">${month}</option>`);
+                }
+            </script>
+        </select>
+        <label>&nbsp;월&nbsp;&nbsp;</label>
+        <select id="day" name="day" required>
+            <option value="">선택</option>
+            <script>
+                for (let day = 1; day <= 31; day++) {
+                    document.write(`<option value="${day < 10 ? '0' + day : day}">${day}</option>`);
+                }
+            </script>
+        </select>
+        <label>&nbsp;일&nbsp;&nbsp;</label>
+    </div>
+    <input type="hidden" id="birth" name="birth">
+
+    <br><br><br>
+    <button type="submit">회원정보 수정</button>
+    <br><br>
+    <a th:href="@{/myPage}" class="subButton">마이페이지로 돌아가기</a>
+</form>
+<script>
+    document.querySelector("form").addEventListener("submit", function () {
+        const year = document.getElementById("year").value;
+        const month = document.getElementById("month").value;
+        const day = document.getElementById("day").value;
+        document.getElementById("birth").value = `${year}-${month}-${day}`;
+    });
+</script>
+<div id='wrap' class="rectangle3">
+    <div id="footer-placeholder"></div>
+</div>
+<script src="/js/update.js?v=1.0"></script>
+<script src="/js/header.js?v=1.0"></script>
+<script src="/js/footer.js?v=1.0"></script>
+</body>
+</html>

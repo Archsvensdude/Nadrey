@@ -1,0 +1,838 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard-SemiBold';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard-Bold';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard-ExtraBold';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-ExtraBold.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard-Black';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'TTLaundryGothicB';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HakgyoansimAllimjangTTF-B';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimAllimjangTTF-B.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+header {
+    position: fixed;
+    top: 0; /* 도달했을때 고정시킬 위치 */
+    z-index: 10;
+}
+
+body {
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.headline {
+    text-align: center;
+    font-family: 'HakgyoansimAllimjangTTF-B', sans-serif;
+    justify-content: center;
+    font-size: 3rem;
+    white-space: nowrap;
+    animation-duration: 1.5s;
+    animation-name: slidein;
+    margin-top: 0;
+}
+
+@media screen and (max-width: 978.9px) {
+
+    .menu-item-myPage {
+        margin-top: -1000px;
+    }
+
+    .loggedInLetter {
+        margin-top: 25px;
+        background-color: #4242cc;
+        color: white;
+    }
+
+    #loggedInNameShort {
+        margin-top: 25px;
+        text-align: right;
+        background-color: #4242cc;
+        color: white;
+    }
+
+    #loggedInIdShort {
+        margin-top: 25px;
+        text-align: left;
+        background-color: #4242cc;
+        color: white;
+    }
+
+    #vertical {
+        margin-top: 25px;
+        min-width: 5px;
+        max-width: 5px;
+        text-align: left;
+        background-color: #4242cc;
+        color: white;
+    }
+
+    #nbsp1 {
+        margin-top: 25px;
+        min-width: 7px;
+        max-width: 7px;
+        background-color: #4242cc;
+    }
+
+    #nbsp2 {
+        margin-top: 25px;
+        min-width: 7px;
+        max-width: 7px;
+        background-color: #4242cc;
+    }
+
+    .headline {
+        margin-top: 72px;
+    }
+}
+
+/* 햄버거 아이콘 스타일 */
+.menu-icon {
+    display: block;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 16px; /* 상단에서 10px 떨어진 위치로 조정 */
+    width: 30px;
+    height: 30px;
+    z-index: 1002;
+}
+
+.menu-icon div {
+    width: 100%;
+    height: 4px;
+    background-color: greenyellow;
+    margin: 6px 0;
+}
+
+/* 반응형: 작은 화면에서 햄버거 메뉴 보이기 */
+@media screen and (max-width: 978.9px) {
+    #menu-text-2-1 {
+        margin-top:-200px;
+    }
+    #menu-text-1 {
+        display: none; /* 작은 화면에서는 기본 메뉴 숨기기 */
+    }
+    .menu-icon {
+        display: block; /* 햄버거 아이콘 보이기 */
+    }
+}
+
+@media screen and (max-width: 978.9px) {
+    /* 사이드바 메뉴 스타일 */
+    .sidebar {
+        margin-top: 0;
+        position: fixed;
+        top: 52px; /* 화면의 최상단에 위치 */
+        right: -250px; /* 화면 밖으로 숨김 */
+        width: 192px;
+        height: 100%;
+        background-color: #4242cc;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* 항목들을 위쪽에 정렬 */
+        justify-content: flex-start; /* 수직으로 상단에 정렬 */
+        padding-top: 20px; /* 상단 여백 조정 */
+        transition: right 0.7s ease; /* 애니메이션 효과 */
+        z-index: 1000; /* 사이드바가 다른 요소보다 위에 표시되도록 */
+    }
+
+    .sidebar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0; /* 기본 여백 제거 */
+        width: 100%;
+    }
+
+    .sidebar ul li a {
+        color: greenyellow;
+        text-decoration: none;
+        font-size: 36px;
+        display: block; /* 링크를 블록 요소로 설정하여 중앙 정렬 유지 */
+
+        .sidebar_login {
+            color: #fff;
+        }
+    }
+
+    /* 사이드바가 활성화되었을 때 */
+    .sidebar.active {
+        right: 0; /* 화면에 표시 */
+    }
+
+    .sidebar ul li {
+        margin: 0; /* 위아래 간격을 줄이기 위해 값을 10px로 설정 */
+    }
+}
+
+@media screen and (min-width: 978.9px) {
+
+    .menu-icon {
+        display: none; /* 햄버거 아이콘 보이기 */
+    }
+    /* 사이드바 메뉴 스타일 */
+    .sidebar {
+        position: fixed;
+        top: 70px;
+        right: -250px; /* 화면에서 숨겨진 상태 */
+        width: 0;
+        height: 100%;
+        background-color: #4242cc;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 99;
+    }
+
+    .sidebar ul {
+        list-style: none;
+        padding: 0;
+        width: 100%; /* 너비 100%로 설정 */
+    }
+
+    .sidebar ul li a {
+        color: greenyellow;
+        text-decoration: none;
+        font-size: 36px;
+        display: block; /* 링크를 블록 요소로 설정하여 중앙 정렬 유지 */
+
+        .sidebar_login {
+            transition: left 2.5s ease; /* 애니메이션 효과 */
+        }
+    }
+
+    /* 사이드바가 활성화되었을 때 */
+    .sidebar.active {
+        transition: left 2.5s ease; /* 애니메이션 효과 */
+    }
+
+    .AI_Searching_logo--2 {
+        padding: 0;
+    }
+}
+
+/* 기본 서브메뉴 숨김 */
+.side_submenu {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 100%; /* 사이드바 오른쪽에 위치 */
+    background-color: #4242cc;
+    width: 200px;
+    padding: 10px 0;
+    list-style: none;
+    box-shadow: -10px 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* 마우스오버 시 서브메뉴 표시 */
+.has-side_submenu:hover .side_submenu {
+    display: block;
+}
+
+.sidebar > nav > ul > li  {
+
+}
+
+/* 서브메뉴 항목 스타일 */
+.sidebar > nav > ul > li > ul {
+    margin-top: 20px;
+    width: 160px;
+    border-radius: 20px 0 0 20px;
+}
+
+.sidebar > nav > ul > li > ul > li > a {
+    color: greenyellow;
+    font-size: 28px;
+    text-decoration: none;
+    padding: 15px;
+    display: block;
+}
+
+.TopRadiusButton {
+    border-radius: 20px 0 0 0;
+}
+
+.bottomRadiusButton {
+    border-radius: 0 0 0 20px;
+}
+
+#side-submenu--attraction {
+    top: 95.5px;
+}
+
+#side-submenu--gallery {
+    top: 288px;
+}
+
+#menu-text-2-1 {
+    color: #ffffff;
+    font-size: 32px;
+}
+#menu-text-2-2 {
+    color: #ffffff;
+    font-size: 32px;
+}
+#menu-text-2-3 li {
+    color: #ffffff;
+}
+#menu-text-2-3 li a {
+    color: #ffffff;
+    font-size: 20px;
+}
+#menu-text-2-3 li a:hover {
+    min-width: 85px;
+    max-width: 85px;
+}
+
+#sidebar {
+    position: fixed; /* 사이드바를 고정 */
+    top: 50px;
+    right: 0;
+    width: 195px; /* 사이드바 너비 */
+    height: 100%;
+    transform: translateX(100%);
+    transition: transform 0.7s ease-in-out;
+}
+
+/* active 클래스가 추가되었을 때 보이도록 설정 */
+#sidebar.active {
+    transform: translateX(0);
+}
+
+#sidebar_menu-text-2-1 {
+    color: #ffffff;
+    padding: 15px 0;
+    font-size: 44px;
+}
+#sidebar_menu-text-2-2 {
+    color: #ffffff;
+    padding: 15px 0;
+    font-size: 36px;
+}
+#sidebar_menu-text-2-3 {
+    color: #ffffff;
+    font-size: 44px;
+}
+
+/* 오른쪽 로그인/로그아웃 버튼 */
+.top-bar__menu-box-2 {
+    display: flex;
+    align-items: center;
+}
+
+.login-item, .logout-item {
+    justify-content: space-between;
+    text-align: right;
+    display: flex;
+    transform: translate(50%, 50%);
+}
+
+html {
+    font-family: 'Pretendard-ExtraBold', sans-serif;
+    overflow-x: scroll;
+    overflow-y: scroll;
+}
+
+/* 노멀라이즈 시작 */
+body, ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;		/* 해당 태그의 list-style을 none으로 하는 것으로 ●을 제거한다 */
+}
+
+body {
+    background-color: #ffffff;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+a {
+    color: inherit;		/* 부모 엘리먼트의 값을 물려받는다 */
+    text-decoration: none;	/* 해당 태그의 text-decoration을 none으로 하는 것으로 밑줄을 제거한다 */
+    text-align: center;
+}
+/* 노멀라이즈 끝 */
+
+/* 라이브러리 시작 */
+.con {
+    margin-left: auto;
+    margin-right: auto;
+}
+/* 라이브러리 끝 */
+
+/* 커스텀 시작 */
+:root {
+    --site-width: 100%;
+}
+
+.con-min-width {
+    min-width: var(--site-width);
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.top-bar > .con {
+    width: var(--site-width);
+}
+
+/* 드롭다운 메뉴 시작 */
+.top-bar__menu-box-1 > ul ul {
+    display: none;
+}
+
+.top-bar__menu-box-2 > ul ul {
+    display: none;
+}
+
+.top-bar__menu-box-1 > ul > li {
+    display: inline-block;
+}
+
+.top-bar__menu-box-2 > ul > li {
+    display: inline-block;
+}
+
+.top-bar__menu-box-1 {
+    text-align: center;
+    margin-top: 0;
+}
+
+.top-bar__menu-box-1 ul {
+    background-color: #4242cc;
+    white-space: nowrap;
+}
+
+.top-bar__menu-box-1 ul > li > a {
+    display: block;
+    font-size: 24px;
+    padding: 20px 0px;
+    background-size: cover;
+}
+
+.top-bar__menu-box-1 ul > li > a:hover {
+    transition-duration: 0.5s;
+}
+
+.top-bar__menu-box-2 {
+    text-align: right;
+    margin-top: -72px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.top-bar__menu-box-2 ul {
+    background-color: #4242cc;
+    white-space: nowrap;
+}
+
+.top-bar__menu-box-2 ul > li > a {
+    display: block;
+    font-size: 32px;
+    padding: 16px 0;
+    background-size: cover;
+    color: white;
+}
+
+.top-bar__menu-box-2 ul > li > a:hover {
+    transition-duration: 0.5s;
+}
+
+.top-bar__menu-box-2 ul > li:hover .sub-menu {
+    height: 207px;
+}
+
+#topMenu > ul {
+    list-style-type: none;  /* 메인 메뉴 안의 ul 내부의 목록 표시를 없애줌 */
+    margin: 0;            /* 메인 메뉴 안의 ul의 margin을 없앰 */
+    padding: 0;           /* 메인 메뉴 안의 ul의 padding을 없앰 */
+}
+
+#topMenu > ul {
+    text-align: center;         /* 텍스트를 가운데로 정렬 */
+}
+
+.menuLink, .submenuLink {           /* 상위 메뉴와 하위 메뉴의 a 태그에 공통으로 설정할 스타일 */
+    text-decoration:none;               /* a 태그의 꾸밈 효과 제거 */
+    display: block;                     /* a 태그의 클릭 범위를 넓힘 */
+    width: 150px;                       /* 기본 넓이를 150px로 설정 */
+    font-size: 12px;                    /* 폰트 사이즈를 12px로 설정 */
+    font-weight: bold;                  /* 폰트를 굵게 설정 */
+}
+
+.sub-menu > li {
+    line-height: 25px;
+    background-color: #94a9ff;
+}
+
+#menu-text-1 {
+    list-style: none;
+    padding: 0;
+}
+
+.topMenuLi {
+    position: relative;
+}
+
+.sub-menu {
+    max-height: 0;
+    overflow: hidden;
+    transition: height 0.4s ease;
+    background-color: #f0f0f0; /* 예시 배경색 */
+}
+
+.topMenuLi:hover, .sub-menu {
+    max-height: 500px;
+}
+
+.menuLink {
+    flex: 1; /* 각 메뉴 항목이 동일한 너비를 갖도록 설정 */
+    min-width: 160px; /* 최대 너비를 고정 */
+    max-width: 160px; /* 최대 너비를 고정 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    background-color: #4242cc;
+    color: greenyellow; /* 글자색 */
+    padding: 14px 16px; /* 패딩을 줘서 영역 확보 */
+    text-decoration: none; /* 밑줄 제거 */
+    white-space: nowrap; /* 텍스트를 한 줄로 유지 */
+    overflow: hidden; /* 영역을 넘는 텍스트를 숨김 */
+    text-overflow: ellipsis; /* 넘치는 텍스트를 '...'로 표시 */
+}
+
+.sub-menuLink {
+    flex: 1; /* 각 메뉴 항목이 동일한 너비를 갖도록 설정 */
+    min-width: 160px; /* 최대 너비를 고정 */
+    max-width: 160px; /* 최대 너비를 고정 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    background-color: #4242cc;
+    color: greenyellow; /* 글자색 */
+    padding: 14px 16px; /* 패딩을 줘서 영역 확보 */
+    text-decoration: none; /* 밑줄 제거 */
+    white-space: nowrap; /* 텍스트를 한 줄로 유지 */
+    overflow: hidden; /* 영역을 넘는 텍스트를 숨김 */
+    text-overflow: ellipsis; /* 넘치는 텍스트를 '...'로 표시 */
+}
+
+.menu-item {
+    flex: 1; /* 각 메뉴 항목이 동일한 너비를 갖도록 설정 */
+    min-width: 160px; /* 최대 너비를 고정 */
+    max-width: 160px; /* 최대 너비를 고정 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    background-color: #4242cc;
+    color: greenyellow; /* 글자색 */
+    padding: 14px 16px; /* 패딩을 줘서 영역 확보 */
+    text-decoration: none; /* 밑줄 제거 */
+    white-space: nowrap; /* 텍스트를 한 줄로 유지 */
+    overflow: hidden; /* 영역을 넘는 텍스트를 숨김 */
+    text-overflow: ellipsis; /* 넘치는 텍스트를 '...'로 표시 */
+}
+
+.top-bar__menu-box-1 ul > li:hover > a {
+    background-color: #339933;
+    color: white;
+}
+
+.top-bar__menu-box-2 ul > li:hover > a {
+    background-color: #339933;
+    color: white;
+}
+
+.top-bar__menu-box-1 > ul > li {
+    position: relative;
+    z-index : 1;
+}
+
+.top-bar__menu-box-2 > ul > li {
+    position: relative;
+    z-index : 1;
+}
+
+.top-bar__menu-box-1 > ul > li > ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+}
+
+.top-bar__menu-box-1 > ul > li:hover > ul {
+    display: block;
+}
+/* 드롭다운 메뉴 끝 */
+
+.side-bar__menu-box-1 > ul > li > a {
+    padding: 27px 14px;
+}
+
+.side-bar__menu-box-1 ul > li > a:hover {
+    transition-duration: 0.5s;
+}
+
+.side-bar__menu-box-1 > ul > li:hover > a {
+    background-color: #339933;
+    color: white;
+}
+
+.side-bar__menu-box-1 > ul > li > ul > li > a:hover {
+    transition-duration: 0.5s;
+}
+
+.side-bar__menu-box-1 > ul > li > ul > li:hover > a {
+    background-color: #339933;
+    color: white;
+}
+
+.main_logo {
+    position: fixed;
+    left: 0;
+    transform: translate(0%, -50%);
+    margin-top: 42px;
+    transition: transform 0.5s ease-in-out;
+    z-index: 1001;
+}
+
+.main_logo:hover {
+    transform: translate(0px, -60px) scale(1.35);
+}
+
+.rectangle2 {
+    position: absolute;
+    width: 1000px;
+    height: 71.6px;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    background-color: #4242cc;
+    z-index : -1;
+    display: block;
+    text-align: center;
+}
+
+#AI_Searching-LatentFont {
+    color: #4242cc;
+}
+
+#AI_Searching-LatentFont--2 {
+    position: relative;
+    color: #4242cc;
+}
+
+.AI_Searching_logo {
+    margin-top: 35px;
+    padding: 0;
+    transition: transform 0.5s ease-in-out;
+}
+
+.AI_Searching_logo--2 {
+    margin-top: 48px;
+    padding: 0;
+    transition: transform 0.5s ease-in-out;
+}
+
+.AI_Searching_logo:hover {
+    transform: translate(-57px, -30px) scale(1.15);
+}
+
+.AI_Searching_logo--2:hover {
+    transform: translate(-80px, -42px) scale(1.15);
+}
+
+#myPageAndLogout-item a {
+    padding: 36px 20px; /* 위아래 10px, 좌우 20px */
+    text-decoration: none;
+    display: block; /* a 태그를 블록처럼 처리 */
+}
+
+#myPageAndLogout-item ul {
+    padding: -36px;
+}
+
+#logout-side-item {
+    margin-top: 15px;
+}
+
+#logout-side-item a {
+    margin-left: 0;
+    padding: 17px 35px;
+    text-decoration: none;
+    color: #FFF;
+    font-size: 36px;
+    display: block; /* a 태그를 블록처럼 처리 */
+}
+
+#login-item--2 > li:hover > a {
+    background-color: #339933;
+    color: white;
+}
+
+#myPage-item a {
+    margin-left: 0;
+    padding: 0 20px;
+    text-decoration: none;
+    color: #FFF;
+    font-size: 35px;
+    display: block; /* a 태그를 블록처럼 처리 */
+}
+
+@media screen and (min-width: 978.9px) {
+    #SideBar {
+        margin-right: -1000%;
+    }
+
+    #loggedInNameShort {
+        display: none;
+    }
+
+    #loggedInIdShort {
+        display: none;
+    }
+
+    #vertical {
+        display: none;
+    }
+
+    #nbsp1 {
+        display: none;
+    }
+
+    #nbsp2 {
+        display: none;
+    }
+}
+
+.postLogoutButton {
+    width: 32px;
+    height: 40px;
+    margin-top: 35px;
+    padding: 0;
+    transition: transform 0.5s ease-in-out;
+}
+
+.menu-item-myPage {
+    flex: 1; /* 각 메뉴 항목이 동일한 너비를 갖도록 설정 */
+    min-width: 50px; /* 최소 너비를 고정 */
+    max-width: 50px; /* 최대 너비를 고정 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    background-color: #4242cc;
+    color: greenyellow; /* 글자색 */
+    padding: -16px 16px; /* 패딩을 줘서 영역 확보 */
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+#myPageAndLogout-item:hover .myPageAndLogout-item_submenu {
+    display: block;
+    max-width: 125px;
+    text-align: center;
+}
+
+.myPageAndLogout-item_submenu {
+    display: none; /* 기본 숨김 */
+    position: absolute;
+    top: 100%;
+    left: -37%;
+    background-color: #4242cc;
+    padding: -50px 0;
+    list-style: none;
+    border-radius: 0 0 12px 12px;
+    box-shadow: -10px 10px 10px rgba(0, 0, 0, 0.4);
+}
+
+.myPageAndLogout-item_submenu li {
+    text-align: center;
+    line-height: 0;
+}
+
+.myPageAndLogout-item_submenu a:hover {
+    background-color: #339933;
+}
+
+.mTopRadiusButton {
+    margin-top: 5px;
+    text-align: center;
+    border-radius: 0 0 0 0;
+}
+
+.mBottomRadiusButton {
+    text-align: center;
+    border-radius: 0 0 12px 12px;
+}
+
+.loggedInLetter {
+    background-color: #4a90e2; /* 아이디 배경 색상 */
+    white-space: nowrap;
+    overflow: hidden;
+    flex: 1;
+    min-width: 100px;
+    max-width: 100px;
+    text-overflow: ellipsis;
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+#loggedInName {
+    padding: 24px 16px;
+    margin-bottom: -15px;
+    text-align: left;
+    font-size: 22px;
+}
+
+#loggedInId {
+    padding: 20px 16px;
+    margin-bottom: -5px;
+    text-align: left;
+    font-size: 15px;
+}
+
+/*
+.loggedInLetter {
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    color: white;
+} */

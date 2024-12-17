@@ -1,0 +1,42 @@
+<link rel="icon" type="image/png" sizes="96x96" href="/image/favicon-96x96.png">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI 탐색</title>
+  <link rel="stylesheet" href="/css/AiSearching.css">
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/footer.css">
+</head>
+<body>
+<div id="header-placeholder"></div>
+<br>
+<div>
+  <h1>AI 추천 관광지</h1>
+</div>
+<main>
+  <section>
+    <h2>상위 5개의 추천 관광지 목록</h2>
+    <div class="recommendation-table">
+      <ul>
+        <li th:each="attraction, stat : ${recommendations}">
+          <div class="post-item">
+            <div class="rank-box">
+              <span class="rank-text" th:text="${stat.index + 1}">1</span> <!-- 순위 표시 -->
+            </div>
+            <img th:src="@{/image/site/{picture}(picture=${attraction.picture})}" alt="관광지 이미지" class="thumbnail"/>
+            <h3 th:text="${attraction.site}" class="site-text"></h3>
+            <p th:text="${attraction.content}" class="content-text"></p>
+            <a th:href="@{/attraction/site/{site}(site=${attraction.site})}" class="link">자세히 보기</a>
+            <p class="post-likes" th:text="@{'👍' + ${attraction.likes}}">
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+</main>
+<div id="footer-placeholder"></div>
+<script src="/js/header.js?v=1.0"></script>
+<script src="/js/footer.js?v=1.0"></script>
+</body>
+</html>

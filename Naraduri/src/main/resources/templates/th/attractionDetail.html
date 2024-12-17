@@ -1,0 +1,436 @@
+<link rel="icon" type="image/png" sizes="96x96" href="/image/favicon-96x96.png">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>관광지 상세 정보</title>
+    <link rel="stylesheet" href="/css/attractionDetail.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+</head>
+<body>
+<div id="header-placeholder"></div>
+<div id="wrap" class="rectangle3"></div>
+<br>
+<div>
+    <div class="category">
+        <a th:href="@{'/attraction/area?region=' + ${attraction.region}}" class="hyper_category" th:switch="${attraction.region}">
+            <span th:case="'METROPOLITAN_AREA'">수도권</span>
+            <span th:case="'GANGWON_AREA'">강원권</span>
+            <span th:case="'CHUNGCHEONG_AREA'">충청권</span>
+            <span th:case="'GYEONGSANG_AREA'">경상권</span>
+            <span th:case="'JEOLLA_AREA'">전라권</span>
+            <span th:case="'JEJU_AREA'">제주권</span>
+
+            <span th:case="*">${attraction.region}</span>
+        </a>
+        <span class="slash"> / </span>
+        <a th:href="@{'/attraction/theme?category=' + ${attraction.theme}}" class="hyper_category" th:text="${attraction.theme}">상위 테마 카테고리</a>
+    </div>
+
+    <h1 th:text="${attraction.site}">관광지 이름</h1>
+
+    <div class="region">
+        <span th:switch="${attraction.state}" class="state">
+            <span th:case="'SEOUL'">서울특별시</span>
+            <span th:case="'GYEONGGI'">경기도</span>
+            <span th:case="'INCHEON'">인천광역시</span>
+
+            <span th:case="'GANGWON'">강원특별자치도</span>
+
+            <span th:case="'DAEJEON'">대전광역시</span>
+            <span th:case="'SEJONG'">세종특별자치시</span>
+            <span th:case="'CHUNGCHEONGBUK-DO'">충청북도</span>
+            <span th:case="'CHUNGCHEONGNAM-DO'">충청남도</span>
+
+            <span th:case="'DAEGU'">대구광역시</span>
+            <span th:case="'GYEONGSANGBUK-DO'">경상북도</span>
+            <span th:case="'BUSAN'">부산광역시</span>
+            <span th:case="'ULSAN'">울산광역시</span>
+            <span th:case="'GYEONGSANGNAM-DO'">경상남도</span>
+
+            <span th:case="'GWANGJU'">광주광역시</span>
+            <span th:case="'JEONBUK'">전북특별자치도</span>
+            <span th:case="'JEOLLANAM-DO'">전라남도</span>
+
+            <span th:case="'JEJU'">제주특별자치도</span>
+
+            <span th:case="*">${attraction.state}</span>
+        </span>
+        <span th:switch="${attraction.municipality}" class="municipality">
+                        <span th:case="'JONGNO'">종로구</span>
+            <span th:case="'JUNG-GU'">중구</span>
+            <span th:case="'YONGSAN'">용산구</span>
+            <span th:case="'SEONGDONG'">성동구</span>
+            <span th:case="'GWANG-JIN'">광진구</span>
+            <span th:case="'DONGDAEMUN'">동대문구</span>
+            <span th:case="'JUNG-NANG'">중랑구</span>
+            <span th:case="'SEONGBUK'">성북구</span>
+            <span th:case="'GANGBUK'">강북구</span>
+            <span th:case="'DOBONG'">도봉구</span>
+            <span th:case="'NOWON'">노원구</span>
+            <span th:case="'EUNPYEONG'">은평구</span>
+            <span th:case="'SEODAEMUN'">서대문구</span>
+            <span th:case="'MAPO'">마포구</span>
+            <span th:case="'YANGCHEON'">양천구</span>
+            <span th:case="'GANGSEO'">강서구</span>
+            <span th:case="'GURO'">구로구</span>
+            <span th:case="'GEUMCHEON'">금천구</span>
+            <span th:case="'YEONGDEUNGPO'">영등포구</span>
+            <span th:case="'DONG-JAK'">동작구</span>
+            <span th:case="'GWANAK'">관악구</span>
+            <span th:case="'SEOCHO'">서초구</span>
+            <span th:case="'GANGNAM'">강남구</span>
+            <span th:case="'SONGPA'">송파구</span>
+            <span th:case="'GANGDONG'">강동구</span>
+
+            <span th:case="'SUWON'">수원시</span>
+            <span th:case="'YONG-IN'">용인시</span>
+            <span th:case="'GOYANG'">고양시</span>
+            <span th:case="'HWASEONG'">화성시</span>
+            <span th:case="'SEONG-NAM'">성남시</span>
+            <span th:case="'BUCHEON'">부천시</span>
+            <span th:case="'NAMYANG-JU'">남양주시</span>
+            <span th:case="'ANSAN'">안산시</span>
+            <span th:case="'PYEONGTAEK'">평택시</span>
+            <span th:case="'ANYANG'">안양시</span>
+            <span th:case="'SIHEUNG'">시흥시</span>
+            <span th:case="'PAJU'">파주시</span>
+            <span th:case="'GIMPO'">김포시</span>
+            <span th:case="'UIJEONGBU'">의정부시</span>
+            <span th:case="'GWANG-JU'">광주시</span>
+            <span th:case="'HANAM'">하남시</span>
+            <span th:case="'GWANGMYEONG'">광명시</span>
+            <span th:case="'GUNPO'">군포시</span>
+            <span th:case="'YANG-JU'">양주시</span>
+            <span th:case="'OSAN'">오산시</span>
+            <span th:case="'ICHEON'">이천시</span>
+            <span th:case="'ANSEONG'">안성시</span>
+            <span th:case="'GURI'">구리시</span>
+            <span th:case="'UIWANG'">의왕시</span>
+            <span th:case="'POCHEON'">포천시</span>
+            <span th:case="'YEOJU'">여주시</span>
+            <span th:case="'DONGDUCHEON'">동두천시</span>
+            <span th:case="'GWACHEON'">과천시</span>
+            <span th:case="'YANGPYEONG'">양평군</span>
+            <span th:case="'GAPYEONG'">가평군</span>
+            <span th:case="'YEONCHEON'">연천군</span>
+
+            <span th:case="'JUNG-GU'">중구</span>
+            <span th:case="'DONG-GU'">동구</span>
+            <span th:case="'SEO-GU'">서구</span>
+            <span th:case="'MICHUHOL'">미추홀구</span>
+            <span th:case="'YEONSU'">연수구</span>
+            <span th:case="'NAMDONG'">남동구</span>
+            <span th:case="'GYE-YANG'">계양구</span>
+            <span th:case="'BUPYEONG'">부평구</span>
+            <span th:case="'GANGHWA'">강화군</span>
+            <span th:case="'ONG-JIN'">옹진군</span>
+            <!-- ---------------------------------- -->
+            <span th:case="'GANGNEUNG'">강릉시</span>
+            <span th:case="'WONJU'">원주시</span>
+            <span th:case="'CHUNCHEON'">춘천시</span>
+            <span th:case="'DONG-HAE'">동해시</span>
+            <span th:case="'SAMCHEOK'">삼척시</span>
+            <span th:case="'SOKCHO'">속초시</span>
+            <span th:case="'TAEBAEK'">태백시</span>
+            <span th:case="'HONGCHEON'">홍천군</span>
+            <span th:case="'INJE'">인제군</span>
+            <span th:case="'GOSEONG'">고성군</span>
+            <span th:case="'YANG-GU'">양구군</span>
+            <span th:case="'YANG-YANG'">양양군</span>
+            <span th:case="'YEONG-WOL'">영월군</span>
+            <span th:case="'CHEORWON'">철원군</span>
+            <span th:case="'JEONGSEON'">정선군</span>
+            <span th:case="'PYEONGCHANG'">평창군</span>
+            <span th:case="'HWACHEON'">화천군</span>
+            <span th:case="'HOENGSEONG'">횡성군</span>
+            <!-- ---------------------------------- -->
+            <span th:case="'JUNG-GU'">중구</span>
+            <span th:case="'DONG-GU'">동구</span>
+            <span th:case="'SEO-GU'">서구</span>
+            <span th:case="'YUSEONG'">유성구</span>
+            <span th:case="'DAEDEOK'">대덕구</span>
+
+            <span th:case="'JOCHIWON'">조치원읍</span>
+            <span th:case="'GEUMNAM'">금남면</span>
+            <span th:case="'BUGANG'">부강면</span>
+            <span th:case="'SOJEONG'">소정면</span>
+            <span th:case="'YEON-GI'">연기면</span>
+            <span th:case="'YEONDONG'">연동면</span>
+            <span th:case="'YEONSEO'">연서면</span>
+            <span th:case="'JANG-GUN'">장군면</span>
+            <span th:case="'JEONDONG'">전동면</span>
+            <span th:case="'JEONUI'">전의면</span>
+            <span th:case="'GO-UN'">고운동</span>
+            <span th:case="'NASEONG'">나성동</span>
+            <span th:case="'SEJONG-DONG'">세종동</span>
+            <span th:case="'DAJEONG'">다정동</span>
+            <span th:case="'DAEPYEONG'">대평동</span>
+            <span th:case="'DODAM'">도담동</span>
+            <span th:case="'DASOM'">다솜동</span>
+            <span th:case="'BAN-GOK'">반곡동</span>
+            <span th:case="'YONG-HO'">용호동</span>
+            <span th:case="'JIP-HYEON'">집현동</span>
+            <span th:case="'HAPGANG'">합강동</span>
+            <span th:case="'BORAM'">보람동</span>
+            <span th:case="'SAEROM'">새롬동</span>
+            <span th:case="'SODAM'">소담동</span>
+            <span th:case="'AREUM'">아름동</span>
+            <span th:case="'EOJIN'">어진동</span>
+            <span th:case="'JONGCHON'">종촌동</span>
+            <span th:case="'GARAM'">가람동</span>
+            <span th:case="'HANSOL'">한솔동</span>
+            <span th:case="'NURI'">누리동</span>
+            <span th:case="'SANUL'">산울동</span>
+            <span th:case="'HANBYEOL'">한별동</span>
+            <span th:case="'HAEMIL'">해밀동</span>
+
+            <span th:case="'CHEONG-JU'">청주시</span>
+            <span th:case="'CHUNG-JU'">충주시</span>
+            <span th:case="'JECHEON'">제천시</span>
+            <span th:case="'JINCHEON'">진천군</span>
+            <span th:case="'JEUNGPYEONG'">증평군</span>
+            <span th:case="'OKCHEON'">옥천군</span>
+            <span th:case="'EUMSEONG'">음성군</span>
+            <span th:case="'YEONGDONG'">영동군</span>
+            <span th:case="'BO-EUN'">보은군</span>
+            <span th:case="'GOESAN'">괴산군</span>
+            <span th:case="'DANYANG'">단양군</span>
+
+            <span th:case="'CHEONAN'">천안시</span>
+            <span th:case="'ASAN'">아산시</span>
+            <span th:case="'SEOSAN'">서산시</span>
+            <span th:case="'DANG-JIN'">당진시</span>
+            <span th:case="'NONSAN'">논산시</span>
+            <span th:case="'GONG-JU'">공주시</span>
+            <span th:case="'BORYEONG'">보령시</span>
+            <span th:case="'GYERYONG'">계룡시</span>
+            <span th:case="'HONGSEONG'">홍성군</span>
+            <span th:case="'YESAN'">예산군</span>
+            <span th:case="'TAE-AN'">태안군</span>
+            <span th:case="'CHEONG-YANG'">청양군</span>
+            <span th:case="'SEOCHEON'">서천군</span>
+            <span th:case="'BUYEO'">부여군</span>
+            <span th:case="'GEUMSAN'">금산군</span>
+            <!-- ---------------------------------- -->
+            <span th:case="'JUNG-GU'">중구</span>
+            <span th:case="'DONG-GU'">동구</span>
+            <span th:case="'SEO-GU'">서구</span>
+            <span th:case="'NAM-GU'">남구</span>
+            <span th:case="'BUK-GU'">북구</span>
+            <span th:case="'DALSEO'">달서구</span>
+            <span th:case="'SUSEONG'">수성구</span>
+            <span th:case="'DALSEONG'">달성군</span>
+            <span th:case="'GUNWI'">군위군</span>
+
+            <span th:case="'POHANG'">포항시</span>
+            <span th:case="'GYEONG-JU'">경주시</span>
+            <span th:case="'SANG-JU'">상주시</span>
+            <span th:case="'GYEONGSAN'">경산시</span>
+            <span th:case="'GUMI'">구미시</span>
+            <span th:case="'GIMCHEON'">김천시</span>
+            <span th:case="'MUN-GYEONG'">문경시</span>
+            <span th:case="'YEONG-JU'">영주시</span>
+            <span th:case="'YEONGCHEON'">영천시</span>
+            <span th:case="'ANDONG'">안동시</span>
+            <span th:case="'CHILGOK'">칠곡군</span>
+            <span th:case="'ULJIN'">울진군</span>
+            <span th:case="'BONG-HWA'">봉화군</span>
+            <span th:case="'YEONGDEOK'">영덕군</span>
+            <span th:case="'SEONG-JU'">성주군</span>
+            <span th:case="'GORYEONG'">고령군</span>
+            <span th:case="'UISEONG'">의성군</span>
+            <span th:case="'YECHEON'">예천군</span>
+            <span th:case="'CHEONGSONG'">청송군</span>
+            <span th:case="'CHEONGDO'">청도군</span>
+            <span th:case="'YEONG-YANG'">영양군</span>
+            <span th:case="'ULLEUNG'">울릉군</span>
+
+            <span th:case="'JUNG-GU'">중구</span>
+            <span th:case="'DONG-GU'">동구</span>
+            <span th:case="'SEO-GU'">서구</span>
+            <span th:case="'NAM-GU'">남구</span>
+            <span th:case="'BUK-GU'">북구</span>
+            <span th:case="'GANGSEO'">강서구</span>
+            <span th:case="'GEUMJEONG'">금정구</span>
+            <span th:case="'SASANG'">사상구</span>
+            <span th:case="'SAHA'">사하구</span>
+            <span th:case="'BUSANJIN'">부산진구</span>
+            <span th:case="'YEONJE'">연제구</span>
+            <span th:case="'YEONGDO'">영도구</span>
+            <span th:case="'SUYEONG'">수영구</span>
+            <span th:case="'DONG-NAE'">동래구</span>
+            <span th:case="'HAEUNDAE'">해운대구</span>
+            <span th:case="'GIJANG'">기장군</span>
+
+            <span th:case="'JUNG-GU'">중구</span>
+            <span th:case="'DONG-GU'">동구</span>
+            <span th:case="'NAM-GU'">남구</span>
+            <span th:case="'BUK-GU'">북구</span>
+            <span th:case="'ULJU'">울주군</span>
+
+            <span th:case="'CHANG-WON'">창원시</span>
+            <span th:case="'GIMHAE'">김해시</span>
+            <span th:case="'GEOJE'">거제시</span>
+            <span th:case="'YANGSAN'">양산시</span>
+            <span th:case="'JINJU'">진주시</span>
+            <span th:case="'TONG-YEONG'">통영시</span>
+            <span th:case="'SACHEON'">사천시</span>
+            <span th:case="'MIRYANG'">밀양시</span>
+            <span th:case="'GEOCHANG'">거창군</span>
+            <span th:case="'HAMAN'">함안군</span>
+            <span th:case="'CHANG-NYEONG'">창녕군</span>
+            <span th:case="'SANCHEONG'">산청군</span>
+            <span th:case="'HADONG'">하동군</span>
+            <span th:case="'HAMYANG'">함양군</span>
+            <span th:case="'HAPCHEON'">합천군</span>
+            <span th:case="'GOSEONG'">고성군</span>
+            <span th:case="'NAMHAE'">남해군</span>
+            <span th:case="'UIRYEONG'">의령군</span>
+            <!-- ---------------------------------- -->
+            <span th:case="'DONG-GU'">동구</span>
+            <span th:case="'SEO-GU'">서구</span>
+            <span th:case="'NAM-GU'">남구</span>
+            <span th:case="'BUK-GU'">북구</span>
+            <span th:case="'GWANGSAN'">광산구</span>
+
+            <span th:case="'JEONJU'">전주시</span>
+            <span th:case="'GUNSAN'">군산시</span>
+            <span th:case="'IKSAN'">익산시</span>
+            <span th:case="'JEONG-EUP'">정읍시</span>
+            <span th:case="'GIMJE'">김제시</span>
+            <span th:case="'NAMWON'">남원시</span>
+            <span th:case="'WANJU'">완주군</span>
+            <span th:case="'MUJU'">무주군</span>
+            <span th:case="'BUAN'">부안군</span>
+            <span th:case="'SUNCHANG'">순창군</span>
+            <span th:case="'GOCHANG'">고창군</span>
+            <span th:case="'IMSIL'">임실군</span>
+            <span th:case="'JANGSU'">장수군</span>
+            <span th:case="'JINAN'">진안군</span>
+
+            <span th:case="'SUNCHEON'">순천시</span>
+            <span th:case="'YEOSU'">여수시</span>
+            <span th:case="'MOKPO'">목포시</span>
+            <span th:case="'NAJU'">나주시</span>
+            <span th:case="'GWANG-YANG'">광양시</span>
+            <span th:case="'YEONG-GWANG'">영광군</span>
+            <span th:case="'HAMPYEONG'">함평군</span>
+            <span th:case="'MUAN'">무안군</span>
+            <span th:case="'SINAN'">신안군</span>
+            <span th:case="'YEONG-AM'">영암군</span>
+            <span th:case="'JANGSEONG'">장성군</span>
+            <span th:case="'DAMYANG'">담양군</span>
+            <span th:case="'JANG-HEUNG'">장흥군</span>
+            <span th:case="'GANG-JIN'">강진군</span>
+            <span th:case="'HAENAM'">해남군</span>
+            <span th:case="'JINDO'">진도군</span>
+            <span th:case="'WANDO'">완도군</span>
+            <span th:case="'GOHEUNG'">고흥군</span>
+            <span th:case="'BOSEONG'">보성군</span>
+            <span th:case="'GOKSEONG'">곡성군</span>
+            <span th:case="'HWASUN'">화순군</span>
+            <span th:case="'GURYE'">구례군</span>
+            <!-- ---------------------------------- -->
+            <span th:case="'JEJU_CITY'">제주시</span>
+            <span th:case="'SEOGWIPO'">서귀포시</span>
+
+            <span th:case="*">${attraction.municipality}</span>
+        </span>
+    </div>
+    <div class="attraction-detail-container">
+
+        <div class="description-section">
+            <div class="text-box">
+                <p th:text="${attraction.content}">관광지에 대한 설명</p>
+            </div>
+        </div>
+
+        <div class="main-image-container">
+            <img th:src="@{/image/site/{picture}(picture=${attraction.picture1})}" alt="Main Image" class="main-image">
+        </div>
+
+        <div class="thumbnail-gallery">
+            <img th:src="@{/image/site/{picture}(picture=${attraction.picture1})}" alt="Thumbnail 1" class="thumbnail1" onclick="updateMainImage(this)">
+            <img th:src="@{/image/site/{picture}(picture=${attraction.picture2})}" alt="Thumbnail 2" class="thumbnail2" onclick="updateMainImage(this)">
+            <img th:src="@{/image/site/{picture}(picture=${attraction.picture3})}" alt="Thumbnail 3" class="thumbnail3" onclick="updateMainImage(this)">
+            <img th:src="@{/image/site/{picture}(picture=${attraction.picture4})}" alt="Thumbnail 4" class="thumbnail4" onclick="updateMainImage(this)">
+        </div>
+    </div>
+</div>
+
+<!--
+<a th:if="${currentPage > 0}" th:href="@{'/attraction/area?region=' + ${selectedRegion} + '&page=' + ${currentPage}}" class="prevnext-button">◀</a>
+<a th:if="${currentPage < totalPages - 1}" th:href="@{'/attraction/area?region=' + ${selectedRegion} + '&page=' + ${currentPage + 2}}" class="prevnext-button">▶</a>
+-->
+
+<br><br>
+<div class="newAttractionButton">
+    <a th:href="@{'/attraction/edit/' + ${attraction.site}}" class="editButton" style="display: none;">정보 수정</a>
+    <button id="likeButton" class="like-button" th:attr="data-site=${attraction.site}">
+        이 관광지가 좋아요👍
+    </button>
+    <!--
+    <div th:each="attraction : ${board}">
+        <span class="post-likes" th:text="@{'👍' + ${attraction.likes}}"></span>
+    </div>
+    -->
+</div>
+<br><br>
+<div id="footer-placeholder"></div>
+<div class="centerButtons">
+    <a th:href="@{'/attraction?page=' + ${currentPage}}" class="backButton">목록으로 돌아가기</a>
+    <a href="/attraction/new" class="newAttraction" style="display: none;">새 관광지 추가</a>
+    <a th:href="@{'/attraction/delete/' + ${attraction.site}}" class="deleteButton" style="display: none;">삭제</a>
+</div>
+<br>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const likeButton = document.getElementById("likeButton");
+
+        if (likeButton) {
+            likeButton.addEventListener("click", function () {
+                const site = likeButton.getAttribute("data-site");
+
+                if (!site) {
+                    alert("잘못된 요청입니다. 다시 시도해주세요.");
+                    return;
+                }
+
+                fetch(`/attraction/site/${site}/like`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" }
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.success) {
+                            alert(data.message);
+                            // 좋아요 수 업데이트
+                            document.getElementById("likesCount").textContent = data.likes;
+                        } else {
+                            alert(data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error:", error);
+
+                        // 특정 오류 메시지를 분석하여 조건부로 알림을 표시
+                        if (error.message.includes("HTTP error")) {
+                            alert("로그인이 필요합니다.");
+                        }
+                    });
+            });
+        }
+    });
+</script>
+<script src="/js/attractionDetail.js?v=2.0"></script>
+<script src="/js/header.js?v=2.0"></script>
+<script src="/js/footer.js?v=2.0"></script>
+</body>
+</html>

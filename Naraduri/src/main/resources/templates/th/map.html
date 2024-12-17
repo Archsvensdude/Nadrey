@@ -1,0 +1,179 @@
+<link rel="icon" type="image/png" sizes="96x96" href="/image/favicon-96x96.png">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>지도로 관광지 찾기</title>
+    <link rel="stylesheet" href="/css/map.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <style>
+        #map {
+            width: 100%;
+            height: 600px;
+        }
+    </style>
+    <!-- 네이버 지도 API -->
+    <script type="text/javascript"
+            src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=5grf7iy0s2"></script>
+</head>
+<body>
+<div class="headline">
+    <br><br>
+    <ul>지도를 이용하여</ul>
+    <ul>원하는 관광지를 탐색하세요!</ul>
+    <br>
+</div>
+<div id="map"></div>
+<div id="header-placeholder"></div>
+<div id="footer-placeholder"></div>
+<script src="/js/header.js?v=1.0"></script>
+<script src="/js/footer.js?v=1.0"></script>
+<script>
+    // 지도 초기화 함수
+    function initMap() {
+        // 지도 생성
+        var map = new naver.maps.Map('map', {
+            center: new naver.maps.LatLng(37.5665, 126.9780),
+            zoom: 10
+        });
+
+        // 지도 로딩 후 스타일 재설정
+        naver.maps.Event.addListener(map, 'tilesloaded', function() {
+            document.querySelectorAll('#map img').forEach(function(img) {
+                img.style.position = 'static';
+                img.style.transform = 'none';
+                img.style.top = 'auto';
+                img.style.left = 'auto';
+            });
+        });
+
+        var locations = [
+            { title: '청와대 앞길', lat: 37.586603, lng: 126.975392 },
+            { title: '경복궁', lat: 37.579617, lng: 126.977041 },
+            { title: '광명동굴', lat: 37.478531, lng: 126.864624 },
+            { title: '익선동', lat: 37.573568, lng: 126.986635 },
+            { title: '서울숲', lat: 37.544086, lng: 127.037496 },
+            { title: '롯데월드타워 서울스카이', lat: 37.512623, lng: 127.102959 },
+            { title: '수원 화성', lat: 37.281059, lng: 127.016595 },
+            { title: '양평 두물머리', lat: 37.545048, lng: 127.333356 },
+            { title: '파주 임진각', lat: 37.886018, lng: 126.741392 },
+            { title: '헤이리 예술마을', lat: 37.798138, lng: 126.687478 },
+            { title: '경희궁', lat: 37.571333, lng: 126.969963 },
+            { title: '서촌마을', lat: 37.580679, lng: 126.970627 },
+            { title: '덕수궁', lat: 37.565804, lng: 126.975104 },
+            { title: '동대문디자인플라자', lat: 37.566195, lng: 127.009440 },
+            { title: '남산서울타워', lat: 37.551169, lng: 126.988227 },
+            { title: '창경궁', lat: 37.578689, lng: 126.994942 },
+            { title: '스타필드 코엑스몰', lat: 37.512084, lng: 127.058995 },
+            { title: '홍대', lat: 37.556113, lng: 126.923619 },
+            { title: '헤이리 예술마을', lat: 37.798138, lng: 126.687478 },
+            { title: '양평 두물머리', lat: 37.545048, lng: 127.333356 },
+            { title: '파주 임진각', lat: 37.886018, lng: 126.741392 },
+            { title: '한국민속촌', lat: 37.259332, lng: 127.114655 },
+            { title: '에버랜드', lat: 37.294832, lng: 127.202354 },
+            { title: '안성팜랜드', lat: 37.041429, lng: 127.222198 },
+            { title: '송월동 동화마을', lat: 37.474434, lng: 126.612713 },
+            { title: '재인폭포', lat: 38.004998, lng: 127.235406 },
+            { title: '서울랜드', lat: 37.436104, lng: 127.001608 },
+            { title: '인천 차이나타운', lat: 37.475619, lng: 126.622619 },
+            { title: '강화 원도심 스토리워크', lat: 37.746838, lng: 126.488050 },
+            { title: '송도 센트럴파크', lat: 37.391104, lng: 126.634709 },
+            { title: '백령도', lat: 37.963855, lng: 124.712548 },
+            { title: '대청도', lat: 37.826667, lng: 124.704722 },
+            { title: '롯데월드 어드벤처', lat: 37.511511, lng: 127.098014 },
+
+            { title: '간현관광지', lat: 37.485639, lng: 127.822342 },
+            { title: '대관령 관광특구', lat: 37.677529, lng: 128.700811 },
+            { title: '고석정', lat: 38.228497, lng: 127.681924 },
+            { title: '무릉계곡', lat: 37.543294, lng: 129.054783 },
+            { title: '강릉 커피거리', lat: 37.773768, lng: 128.948540 },
+
+            { title: '여좌천', lat: 35.163454, lng: 128.681780 },
+            { title: '진주성', lat: 35.193962, lng: 128.084507 },
+            { title: '대구 동성로거리', lat: 35.870148, lng: 128.596763 },
+            { title: '장생포 고래문화마을', lat: 35.501571, lng: 129.373287 },
+            { title: '수성못 유원지', lat: 35.829270, lng: 128.613116 },
+            { title: '문경단산 모노레일', lat: 36.658872, lng: 128.095325 },
+            { title: '부산 스카이라인 루지', lat: 35.164550, lng: 129.112011 },
+            { title: '부산엑스더스카이', lat: 35.158698, lng: 129.160384 },
+            { title: '스페이스워크', lat: 35.541111, lng: 129.321944 },
+            { title: '광안리 SUP Zone', lat: 35.153303, lng: 129.118731 },
+            { title: '롯데월드 어드벤처 부산', lat: 35.321708, lng: 129.202878 },
+            { title: '디피랑', lat: 35.147529, lng: 129.101979 },
+            { title: '감천문화마을', lat: 35.096257, lng: 129.032588 },
+            { title: '해운대 그린레일웨이', lat: 35.162297, lng: 129.153848 },
+            { title: '죽변해안스카이레일', lat: 37.068742, lng: 129.431882 },
+            { title: '거창 항노화힐링랜드', lat: 35.658760, lng: 127.941900 },
+            { title: '부산 송도해수욕장', lat: 35.088136, lng: 129.018179 },
+            { title: '울릉도', lat: 37.488735, lng: 130.905692 },
+            { title: '불국사', lat: 35.790184, lng: 129.331185 },
+            { title: '영남알프스', lat: 35.563079, lng: 129.015599 },
+            { title: '대구 서문시장', lat: 35.870914, lng: 128.579195 },
+            { title: '부산 송정해수욕장', lat: 35.179052, lng: 129.199519 },
+            { title: '용두산 자갈치 관광특구', lat: 35.097184, lng: 129.036927 },
+            { title: '태종대', lat: 35.051567, lng: 129.085750 },
+            { title: '송도용궁구름다리', lat: 35.079366, lng: 129.027603 },
+            { title: '당항포관광지', lat: 34.899862, lng: 128.120751 },
+            { title: '김해가야테마파크', lat: 35.274502, lng: 128.851030 },
+            { title: '황매산군립공원', lat: 35.421126, lng: 127.934440 },
+            { title: '주산지', lat: 36.701607, lng: 129.174375 },
+            { title: '대왕암공원', lat: 35.491510, lng: 129.432185 },
+            { title: '태화강 국가정원', lat: 35.545879, lng: 129.309015 },
+            { title: '소수서원', lat: 36.535288, lng: 128.469306 },
+            { title: '독도', lat: 37.241886, lng: 131.864354 },
+            { title: '석굴암', lat: 35.795264, lng: 129.332045 },
+            { title: '해운대해수욕장', lat: 35.158698, lng: 129.160384 },
+            { title: '대구앞산공원', lat: 35.825108, lng: 128.599693 },
+            { title: '광안리해변 테마거리', lat: 35.153303, lng: 129.118731 },
+
+            { title: '목포 해상케이블카', lat: 34.798294, lng: 126.380366 },
+            { title: '군산 선유도', lat: 35.835252, lng: 126.464458 },
+            { title: '마이산도립공원', lat: 35.717582, lng: 127.399850 },
+            { title: '국립아시아문화전당', lat: 35.146847, lng: 126.922615 },
+            { title: '돌산도', lat: 34.605057, lng: 127.780894 },
+            { title: '목포근대역사관 1관 (구 목포 일본영사관)', lat: 34.791430, lng: 126.384097 },
+            { title: '5·18기념공원', lat: 35.127678, lng: 126.850758 },
+            { title: '익산 왕궁리유적', lat: 35.948828, lng: 127.041824 },
+            { title: '국립태권도원', lat: 35.791438, lng: 127.321544 },
+
+            { title: '제주 올레길', lat: 33.514243, lng: 126.529296 },
+            { title: '한라산 (제주도 국가지질공원)', lat: 33.361664, lng: 126.529246 },
+            { title: '성산일출봉', lat: 33.458556, lng: 126.937739 },
+            { title: '제주돌문화공원', lat: 33.491287, lng: 126.652205 },
+
+            { title: '중앙탑공원', lat: 36.970091, lng: 127.933867 },
+            { title: '청풍호반케이블카', lat: 37.027221, lng: 128.188140 },
+            { title: '무령왕릉과 왕릉원', lat: 36.454792, lng: 127.119076 },
+            { title: '관북리 유적과 부소산성', lat: 36.281841, lng: 126.918661 },
+            { title: '한밭수목원', lat: 36.364427, lng: 127.380401 },
+            { title: '서동공원과 궁남지', lat: 36.282545, lng: 126.924095 },
+            { title: '법주사', lat: 36.538500, lng: 127.838194 },
+            { title: '공산성', lat: 36.458109, lng: 127.120768 },
+            { title: '꽃지해수욕장', lat: 36.542366, lng: 126.326391 },
+            { title: '대천해수욕장', lat: 36.324155, lng: 126.513436 },
+            { title: '서산 해미읍성', lat: 36.713084, lng: 126.523469 }
+        ];
+
+        locations.forEach(function(location) {
+            var marker = new naver.maps.Marker({
+                position: new naver.maps.LatLng(location.lat, location.lng),
+                map: map,
+                title: location.title
+            });
+
+            var infoWindow = new naver.maps.InfoWindow({
+                content: '<div style="width:150px;text-align:center;padding:10px;">' + location.title + '</div>'
+            });
+
+            naver.maps.Event.addListener(marker, 'click', function () {
+                infoWindow.open(map, marker);
+            });
+        });
+    }
+
+    // 페이지 로드 시 initMap 함수 호출
+    window.onload = initMap;
+</script>
+</body>
+</html>

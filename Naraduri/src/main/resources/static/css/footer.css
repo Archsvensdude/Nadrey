@@ -1,0 +1,22 @@
+@font-face {
+    font-family: 'Pretendard-ExtraBold';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-ExtraBold.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+}
+
+footer {
+    margin-top: -625px;
+    font-family: "Pretendard-ExtraBold", sans-serif;
+    width: 100%;
+    height: 140px; /* 내용물에 따라 알맞는 값 설정 */
+    transform: translate(0%, 563%);
+    background-color: #38A800;
+    color: #fff;
+    text-align: center;
+    position: absolute;
+    white-space: nowrap;
+}
+.Github_logo {
+    margin-top: 30px;
+}

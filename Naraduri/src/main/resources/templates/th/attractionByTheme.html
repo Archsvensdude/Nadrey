@@ -1,0 +1,84 @@
+<link rel="icon" type="image/png" sizes="96x96" href="/image/favicon-96x96.png">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>테마별 명소</title>
+    <link rel="stylesheet" href="/css/attractionByTheme.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+</head>
+<body>
+<div id="header-placeholder"></div>
+<script src="/js/header.js?v=1.0"></script>
+<div id='wrap' class="rectangle3">
+</div>
+<br>
+<div>
+    <h1>테마별 명소</h1>
+
+    <!-- 테마 선택 -->
+    <form action="/attraction/theme" id="getForm" method="get">
+        <label for="theme">테마 선택:</label>
+        <select name="category" id="theme">
+            <option value="ALL" th:selected="${selectedTheme == 'ALL'}">전체</option>
+            <option value="문화" th:selected="${selectedTheme == '문화'}">문화</option>
+            <option value="역사·유적지" th:selected="${selectedTheme == '역사·유적지'}">역사·유적지</option>
+            <option value="레저·액티비티" th:selected="${selectedTheme == '레저·액티비티'}">레저·액티비티</option>
+            <option value="자연" th:selected="${selectedTheme == '자연'}">자연</option>
+            <option value="테마파크" th:selected="${selectedTheme == '테마파크'}">테마파크</option>
+            <option value="도심" th:selected="${selectedTheme == '도심'}">도심</option>
+        </select>
+        <button type="submit">검색</button>
+    </form>
+
+    <div class="attractions-container">
+        <div class="attraction-card" th:each="attraction : ${attractions}">
+            <div class="attraction-image">
+                <a th:href="@{'/attraction/site/' + ${attraction.site}}"><img th:src="@{/image/site/{picture}(picture=${attraction.picture1})}" alt="image" class="thumbnail"></a>
+            </div>
+            <div class="attraction-info">
+                <a th:href="@{'/attraction/site/' + ${attraction.site}}" th:text="${attraction.site}" class="attraction-title"></a>
+                <br>
+                <span th:text="${attraction.theme}">
+                </span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<br>
+<div class="pagination">
+    <a th:if="${currentPage > 9}" th:href="@{'/attraction/theme?category=' + ${selectedCategory} + '&page=1'}" class="digit">1</a>
+    <span th:if="${currentPage > 9}">···</span>
+    <a th:if="${currentPage >= 10 && totalPages > 10}" th:href="@{'/attraction/theme?category=' + ${selectedCategory} + '&page=' + ${(currentPage / 10 - 1) * 10 + 10}}" class="prevnext-button">《 10</a>
+    <a th:if="${currentPage > 0}" th:href="@{'/attraction/theme?category=' + ${selectedCategory} + '&page=' + ${currentPage}}" class="prevnext-button">◀</a>
+    <span th:with="startPage=${(currentPage / 10) * 10}, endPage=${startPage + 9}">
+        <span th:each="pageNum : ${#numbers.sequence(startPage, endPage)}"
+              th:if="${pageNum < totalPages}">
+            <span th:if="${pageNum == currentPage}">
+                <span class="active-digit" th:text="${pageNum + 1}"></span>
+            </span>
+            <span th:if="${pageNum != currentPage}">
+                <a th:classappend="${pageNum == currentPage} ? 'active-digit' : 'digit'"
+                   th:href="@{'/attraction/theme?category=' + ${selectedCategory} + '&page=' + ${pageNum + 1}}"
+                   th:text="${pageNum + 1}"></a>
+            </span>
+        </span>
+    </span>
+    <a th:if="${currentPage < totalPages - 1}" th:href="@{'/attraction/theme?category=' + ${selectedCategory} + '&page=' + ${currentPage + 2}}" class="prevnext-button">▶</a>
+    <a th:if="${currentPage <= 9 && totalPages > 10}" th:href="@{'/attraction/theme?category=' + ${selectedCategory} + '&page=' + ${(currentPage / 10 + 1) * 10 + 1}}" class="prevnext-button">10 》</a>
+    <span th:if="${totalPages > 10 && currentPage < 10}">···</span>
+    <a th:if="${totalPages > 10 && currentPage < 10}" th:href="@{'/attraction/theme?category=' + ${selectedCategory} + '&page=' + ${totalPages}}" th:text="${totalPages}" class="digit"></a>
+</div>
+<br>
+<div class="newAttractionButton">
+    <br>
+    <a href="/attraction/new" class="newAttraction" style="display: none;">새 관광지 추가</a>
+</div>
+<br>
+<div id="footer-placeholder"></div>
+<script src="/js/footer.js?v=1.0"></script>
+</body>
+</html>

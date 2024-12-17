@@ -1,0 +1,78 @@
+<link rel="icon" type="image/png" sizes="96x96" href="/image/favicon-96x96.png">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>새 관광지 추가</title>
+    <link rel="stylesheet" href="/css/attractionForm.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+</head>
+<body>
+<div id="header-placeholder"></div>
+<h1>새 관광지 추가</h1>
+<!--<div class="letter">
+    <span class="letter1">헤이리 예술마을  </span>
+    <span class="letter2">수정</span>
+</div>-->
+<form th:action="@{/attraction/new}" th:object="${attractionDetail}" method="post">
+    <label class="title-sentence-1">새 관광지 이름을 입력해주세요! (필수)</label>
+    <br><br>
+    <label>
+        <input type="text" th:field="*{site}" placeholder="관광지 이름" required />
+    </label>
+    <br><br><br><br>
+    <label class="title-sentence-2">사진 파일을 첨부한 뒤 파일 이름을 입력해주세요! (필수)</label>
+    <br><br>
+    <label>
+        <input type="text" class="picture" th:field="*{picture1}" placeholder="사진 파일 첨부 1" required />
+    </label>
+    <br><br>
+    <label>
+        <input type="text" class="picture" th:field="*{picture2}" placeholder="사진 파일 첨부 2" required />
+    </label>
+    <br><br>
+    <label>
+        <input type="text" class="picture" th:field="*{picture3}" placeholder="사진 파일 첨부 3" required />
+    </label>
+    <br><br>
+    <label>
+        <input type="text" class="picture" th:field="*{picture4}" placeholder="사진 파일 첨부 4" required />
+    </label>
+    <br><br><br><br><br>
+    <label class="title-sentence-3">선택한 관광지의 권역, 광역, 지역을 입력해주세요! (필수)</label>
+    <br><br>
+    <label>
+        <input type="text" class="selectRegion" th:field="*{region}" placeholder="권역 선택 (예: 수도권)" required />
+    </label>
+    <br><br>
+    <label>
+        <input type="text" class="selectRegion" th:field="*{state}" placeholder="광역 선택 (예: 서울특별시 or 경기도)" required />
+    </label>
+    <br><br>
+    <label>
+        <input type="text" class="selectRegion" th:field="*{municipality}" placeholder="지역 선택 (예: 강남구 or 수원시)" required />
+    </label>
+    <br><br><br><br>
+    <label class="title-sentence-4">테마 선택 (필수)</label>
+    <br><br>
+    <label>
+        <input type="text" th:field="*{theme}" placeholder="예: 문화 or 역사·유적지" required />
+    </label>
+    <br><br><br><br><br>
+    <label class="title-sentence-5">관광지 상세 내용을 입력해주세요! (필수)</label>
+    <br><br>
+    <label>
+        <textarea th:field="*{content}" placeholder="상세 내용을 입력해주세요. (100자 이상)" required></textarea>
+    </label>
+    <br><br><br><br>
+    <div class="newAttractionButton">
+    <button type="submit" class="newAttraction">등록 완료</button>
+    </div>
+    <br>
+</form>
+<div id="footer-placeholder"></div>
+<script src="/js/header.js?v=1.0"></script>
+<script src="/js/footer.js?v=1.0"></script>
+</body>
+</html>

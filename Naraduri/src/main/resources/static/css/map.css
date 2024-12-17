@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+@font-face {
+    font-family: 'HakgyoansimAllimjangTTF-B';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimAllimjangTTF-B.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard-Bold';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard-ExtraBold';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-ExtraBold.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Pretendard-Black';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+}
+
+header {
+    position: fixed;
+    top: 0; /* 도달했을때 고정시킬 위치 */
+    z-index: 10;
+}
+
+body {
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.headline {
+    text-align: center;
+    font-family: 'HakgyoansimAllimjangTTF-B', sans-serif;
+    justify-content: center;
+    font-size: 3rem;
+    white-space: nowrap;
+    animation-duration: 1.5s;
+    animation-name: slidein;
+    margin-top: 0;
+}
+
+@media screen and (max-width: 978.9px) {
+    .headline {
+        margin-top: 72px;
+    }
+}
+
+/* 978.9px 이하일 때 메뉴 숨기기 및 햄버거 메뉴 보이기 */
+@media screen and (max-width: 978.9px) {
+    #menu-text-1 {
+        display: none;
+    }
+
+    .menu-icon {
+        display: block;
+        cursor: pointer;
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        width: 30px;
+        height: 30px;
+        z-index: 100;
+    }
+
+    .menu-icon div {
+        width: 100%;
+        height: 4px;
+        background-color: greenyellow;
+        margin: 6px 0;
+    }
+}
+
+img {
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+html {
+    font-family: 'Pretendard-ExtraBold', sans-serif;
+    overflow-x: scroll;
+    overflow-y: scroll;
+}
+
+/* 노멀라이즈 시작 */
+body, ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;		/* 해당 태그의 list-style을 none으로 하는 것으로 ●을 제거한다 */
+}
+
+body {
+    background-color: #ffffff;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+a {
+    color: inherit;		/* 부모 엘리먼트의 값을 물려받는다 */
+    text-decoration: none;	/* 해당 태그의 text-decoration을 none으로 하는 것으로 밑줄을 제거한다 */
+    text-align: center;
+}
+/* 노멀라이즈 끝 */
+
+/* 라이브러리 시작 */
+.con {
+    margin-left: auto;
+    margin-right: auto;
+}
+/* 라이브러리 끝 */
+
+/* 커스텀 시작 */
+
+.menu-item {
+    flex: 1; /* 각 메뉴 항목이 동일한 너비를 갖도록 설정 */
+    min-width: 160px; /* 최대 너비를 고정 */
+    max-width: 160px; /* 최대 너비를 고정 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    background-color: #4242cc;
+    color: greenyellow; /* 글자색 */
+    padding: 14px 16px; /* 패딩을 줘서 영역 확보 */
+    text-decoration: none; /* 밑줄 제거 */
+    white-space: nowrap; /* 텍스트를 한 줄로 유지 */
+    overflow: hidden; /* 영역을 넘는 텍스트를 숨김 */
+    text-overflow: ellipsis; /* 넘치는 텍스트를 '...'로 표시 */
+}
+
+h3 {
+    text-align: left;
+    color: #000;
+}
+
+@media screen and (max-width: 978.9px) {
+    .grid-container {
+        margin-top: 72px;
+    }
+}
+
+.headline {
+    text-align: center;
+    position: relative;
+    margin-top: 160px;
+    font-family: 'HakgyoansimAllimjangTTF-B', sans-serif;
+    color: #4242cc;
+    font-size: 3rem;
+}

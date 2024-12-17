@@ -1,0 +1,149 @@
+<link rel="icon" type="image/png" sizes="96x96" href="/image/favicon-96x96.png">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>나들이 프로젝트</title>
+    <link rel="stylesheet" href="/css/attractionBasic.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+</head>
+<body>
+<div id="header-placeholder"></div>
+<div id='wrap' class="rectangle3">
+</div>
+<h1>관광지 안내 게시판</h1>
+<div class="search-container">
+    <input type="text" id="searchInput" placeholder="검색어를 입력하세요..." th:value="${search}">
+    <button id="searchButton" onclick="searchAttractions()">🔍</button>
+</div>
+
+<script src="/js/attractionBasic.js"></script>
+<!--
+    <div id="postContainer">
+    <div th:each="attraction : ${board}">
+        <div class="post" data-title="경복궁">
+            <span class="post-number" th:text="${attraction.no}">2</span>
+            <span class="post-title" th:href="@{'/attraction/site/' + ${attraction.site}}" th:text="${attraction.site}">경복궁</span>
+            <span class="post-description">조선 왕조의 왕궁으로, 역사와 문화를 체험할 수 있는 대표적인 궁궐입니다...</span>
+            <span class="post-date">2024-10-18 00:00:00.0</span>
+            <a href="#" class="edit">수정</a>
+            <a href="#" class="delete">삭제</a>
+        </div>
+    </div>
+    </div>
+-->
+
+<div class="table-container">
+
+    <div th:each="attraction : ${board}">
+        <div class="post-item" th:attr="data-title=${attraction.site}">
+            <div class="post-number" th:text="${attraction.no}">2</div>
+            <div class="post-content">
+                <h3><a id="post-title" class="post-title" th:href="@{'/attraction/site/' + ${attraction.site} + '?page=' + ${currentPage + 1}}" th:text="${attraction.site}"></a></h3>
+                <p class="post-description" th:text="${attraction.content}">
+                </p>
+            </div>
+            <a class="post-picture" th:href="@{'/attraction/site/' + ${attraction.site}}"><img th:src="@{/image/site/{picture}(picture=${attraction.picture})}" alt="image" class="thumbnail">
+            </a>
+            <div class="post-content">
+                <p class="post-date" th:text="${attraction.register}">
+                </p>
+                <p class="post-likes" th:text="@{'👍' + ${attraction.likes}}">
+                </p>
+            </div>
+            <div class="post-actions">
+                <!-- <a th:href="@{'/attraction/edit/no/' + ${attraction.no}}" class="edit">수정</a> -->
+                <!-- <a th:href="@{'/attraction/delete/' + ${attraction.site}}" class="delete">삭제</a> -->
+            </div>
+        </div>
+    </div>
+
+</div>
+<br><br>
+<!-- Pagination -->
+<!--
+<div class="pagination">
+    <a th:if="${currentPage < totalPages + 8 && currentPage >= 10}" th:href="@{'/attraction?page=' + ${currentPage - 9}}" class="prevnext-button">《 10</a>
+    <a th:if="${currentPage > 0}" th:href="@{'/attraction?page=' + ${currentPage}}" class="prevnext-button">이전</a>
+    <a th:classappend="${currentPage == 0} ? 'active-digit' : 'digit'" th:if="${currentPage >= 0 && currentPage <= 9}" th:href="@{'/attraction?page=' + ${1}}" class="digit">1</a>
+    <a th:classappend="${currentPage == 1} ? 'active-digit' : 'digit'" th:if="${currentPage >= 0 && currentPage <= 9}" th:href="@{'/attraction?page=' + ${2}}" class="digit">2</a>
+    <a th:classappend="${currentPage == 2} ? 'active-digit' : 'digit'" th:if="${currentPage >= 0 && currentPage <= 9}" th:href="@{'/attraction?page=' + ${3}}" class="digit">3</a>
+    <a th:classappend="${currentPage == 3} ? 'active-digit' : 'digit'" th:if="${currentPage >= 0 && currentPage <= 9}" th:href="@{'/attraction?page=' + ${4}}" class="digit">4</a>
+    <a th:classappend="${currentPage == 4} ? 'active-digit' : 'digit'" th:if="${currentPage >= 0 && currentPage <= 9}" th:href="@{'/attraction?page=' + ${5}}" class="digit">5</a>
+    <a th:classappend="${currentPage == 5} ? 'active-digit' : 'digit'" th:if="${currentPage >= 0 && currentPage <= 9}" th:href="@{'/attraction?page=' + ${6}}" class="digit">6</a>
+    <a th:classappend="${currentPage == 6} ? 'active-digit' : 'digit'" th:if="${currentPage >= 0 && currentPage <= 9}" th:href="@{'/attraction?page=' + ${7}}" class="digit">7</a>
+    <a th:classappend="${currentPage == 7} ? 'active-digit' : 'digit'" th:if="${currentPage >= 0 && currentPage <= 9}" th:href="@{'/attraction?page=' + ${8}}" class="digit">8</a>
+    <a th:classappend="${currentPage == 8} ? 'active-digit' : 'digit'" th:if="${currentPage >= 0 && currentPage <= 9}" th:href="@{'/attraction?page=' + ${9}}" class="digit">9</a>
+    <a th:classappend="${currentPage == 9} ? 'active-digit' : 'digit'" th:if="${currentPage >= 0 && currentPage <= 9}" th:href="@{'/attraction?page=' + ${10}}" class="digit">10</a>
+    <a th:classappend="${currentPage == 10} ? 'active-digit' : 'digit'" th:if="${currentPage >= 10 && currentPage <= 19}"  th:href="@{'/attraction?page=' + ${11}}" class="digit">11</a>
+    <a th:classappend="${currentPage == 11} ? 'active-digit' : 'digit'" th:if="${currentPage >= 10 && currentPage <= 19}" th:href="@{'/attraction?page=' + ${12}}" class="digit">12</a>
+    <a th:classappend="${currentPage == 12} ? 'active-digit' : 'digit'" th:if="${currentPage >= 10 && currentPage <= 19}" th:href="@{'/attraction?page=' + ${13}}" class="digit">13</a>
+    <a th:if="${currentPage < totalPages - 1}" th:href="@{'/attraction?page=' + ${currentPage + 2}}" class="prevnext-button">다음</a>
+    <a th:if="${currentPage < totalPages - 10 && currentPage <= 9}" th:href="@{'/attraction?page=' + ${currentPage + 11}}" class="prevnext-button">10 》</a>
+</div>
+-->
+<div class="pagination">
+    <a th:if="${currentPage > 9}" th:href="@{'/attraction?page=1'}" class="digit">1</a>
+    <span th:if="${currentPage > 9}">···</span>
+    <a th:if="${currentPage >= 10 && totalPages > 10}" th:href="@{'/attraction?page=' + ${(currentPage / 10 - 1) * 10 + 10}}" class="prevnext-button">《 10</a>
+    <a th:if="${currentPage > 0}" th:href="@{'/attraction?page=' + ${currentPage}}" class="prevnext-button">◀</a>
+    <span th:with="startPage=${(currentPage / 10) * 10}, endPage=${startPage + 9}">
+        <span th:each="pageNum : ${#numbers.sequence(startPage, endPage)}"
+              th:if="${pageNum < totalPages}">
+            <span th:if="${pageNum == currentPage}">
+                <span class="active-digit" th:text="${pageNum + 1}"></span>
+            </span>
+            <span th:if="${pageNum != currentPage}">
+                <a th:classappend="${pageNum == currentPage} ? 'active-digit' : 'digit'"
+                   th:href="@{'/attraction?page=' + ${pageNum + 1}}"
+                   th:text="${pageNum + 1}"></a>
+            </span>
+        </span>
+    </span>
+    <a th:if="${currentPage < totalPages - 1}" th:href="@{'/attraction?page=' + ${currentPage + 2}}" class="prevnext-button">▶</a>
+    <a th:if="${currentPage <= 9 && totalPages > 10}" th:href="@{'/attraction?page=' + ${(currentPage / 10 + 1) * 10 + 1}}" class="prevnext-button">10 》</a>
+    <span th:if="${totalPages > 10 && currentPage < 10}">···</span>
+    <a th:if="${totalPages > 10 && currentPage < 10}" th:href="@{'/attraction?page=' + ${totalPages}}" th:text="${totalPages}" class="digit"></a>
+</div>
+<div id="footer-placeholder"></div>
+<br>
+<div class="newAttractionButton">
+    <br>
+<a href="/attraction/new" class="newAttraction" style="display: none;">새 관광지 추가</a>
+</div>
+<br>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const searchInput = document.getElementById("searchInput");
+        const searchParam = new URLSearchParams(window.location.search).get("search");
+
+        if (searchParam) {
+            // 검색어 유지
+            searchInput.value = searchParam;
+
+            // 페이지네이션 링크에 검색어 추가
+            const paginationLinks = document.querySelectorAll(".pagination a");
+            paginationLinks.forEach(link => {
+                const url = new URL(link.href);
+                url.searchParams.set("search", searchParam);
+                link.href = url.toString();
+            });
+        }
+
+        // 검색 버튼 클릭 시 동작
+        document.getElementById("searchButton").addEventListener("click", function () {
+            const newSearch = searchInput.value.trim();
+
+            // 페이지 번호를 항상 1로 설정
+            const url = new URL(window.location.href);
+            url.searchParams.set("search", newSearch);
+            url.searchParams.set("page", 1); // 항상 page=1로 설정
+            window.location.href = url.toString();
+        });
+    });
+</script>
+<script src="/js/header.js?v=1.0"></script>
+<script src="/js/footer.js?v=1.0"></script>
+</body>
+</html>

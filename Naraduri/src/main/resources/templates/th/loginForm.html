@@ -1,0 +1,73 @@
+<link rel="icon" type="image/png" sizes="96x96" href="/image/favicon-96x96.png">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>로그인</title>
+  <link rel="stylesheet" href="/css/loginFormation.css">
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/footer.css">
+</head>
+<body>
+<div id="header-placeholder"></div>
+<br><br><br><br>
+<h1>로그인</h1>
+<form id="loginForm" method="post" action="/login">
+  <label for="username"></label>
+  <input type="text" id="username" name="username" placeholder="아이디" class="id_box" required>
+  <br>
+  <label for="password"></label>
+  <input type="password" id="password" name="password" placeholder="비밀번호" class="password_box" required>
+  <br><br><br>
+  <button type="submit" id="loginButton">로그인</button>
+  <br><br>
+  <a href="/login/signUp" class="subButton">회원가입</a>
+  <span class="subButtonBar">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+  <a href="/login/findById" class="subButton">아이디 찾기</a>
+  <span class="subButtonBar">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+  <a href="/login/findByPwd" class="subButton">비밀번호 찾기</a>
+</form>
+<script>
+  document.getElementById("loginButton").addEventListener("click", function (event) {
+    event.preventDefault(); // 기본 폼 제출 방지
+
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    fetch("/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    })
+            .then((response) => {
+              if (response.ok) {
+                return response.json();
+              } else {
+                return response.json().then((err) => {
+                  throw new Error(err.message || "로그인 실패");
+                });
+              }
+            })
+            .then((data) => {
+              alert("로그인 성공!");
+              window.location.href = "/";
+            })
+            .catch((error) => {
+              document.getElementById("errorMessage").textContent = error.message;
+            });
+  });
+</script>
+<div id="errorMessage" style="color: red;">
+  <!-- 서버에서 전달된 오류 메시지 표시 -->
+  <p th:if="${error}" th:text="${error}"></p>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br>
+<div id='wrap' class="rectangle3">
+  <div id="footer-placeholder"></div>
+</div>
+<script src="/js/header.js?v=1.0" defer></script>
+<script src="/js/footer.js?v=1.0"></script>
+</body>
+</html>

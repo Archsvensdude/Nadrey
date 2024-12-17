@@ -1,0 +1,102 @@
+<link rel="icon" type="image/png" sizes="96x96" href="/image/favicon-96x96.png">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지</title>
+    <link rel="stylesheet" href="/css/myPage.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+</head>
+<body>
+<div id="header-placeholder"></div>
+<br><br><br>
+<h1 class="title" th:text="${users.name} + '님의 마이페이지'"></h1>
+<div id="myPageContainer" class="myPageContainer">
+    <div class="myPageHeader">
+        <h1 class="userId" th:text="'아이디: ' + ${users.id}"></h1>
+    </div>
+    <div class="myPageContent">
+        <div class="userInfo">
+            <p><strong>이름:</strong> <span th:text="${users.name}"></span></p>
+            <p><strong>이메일:</strong> <span th:text="${users.email}"></span></p>
+            <p><strong>생년월일:</strong> <span th:text="${users.birth}"></span></p>
+            <p><strong>가입일:</strong> <span th:text="${users.registerDate}"></span></p>
+        </div>
+    </div>
+    <div class="myPageFooter">
+        <a class="btn updateBtn" href="/login/update">회원정보 변경</a>
+        <a class="btn homeBtn" href="/">홈으로</a>
+        <a class="btn logoutBtn" href="javascript:void(0);" onclick="logout()" >로그아웃</a>
+    </div>
+</div>
+<div id="myPageContainer2" class="myPageContainer">
+    <div class="myPageHeader">
+        <h1>좋아요 기록</h1>
+    </div>
+    <div class="myPageContent">
+        <p><strong>총 좋아요 수 :</strong> <span id="totalLikes" th:text="${users.userLikes}">0</span></p>
+        <div id="likedSitesContainer">
+            <h2 id="likedSitesTitle">좋아요를 누른 관광지</h2>
+            <div id="likedSites">
+                <!-- 좋아요 관광지 태그 -->
+                <div th:each="likedSite : ${likedSites}">
+                    <button class="site-tag" th:text="${likedSite}" style="display: block;"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        fetch("/api/current-user")
+            .then(response => response.json())
+            .then(user => {
+                const userId = user.id;
+
+                fetch(`/myPage/${userId}/likes`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const totalLikes = data.totalLikes || 0;
+                        document.getElementById("totalLikes").innerText = totalLikes;
+
+                        const likedSitesContainer = document.getElementById("likedSites");
+                        likedSitesContainer.innerHTML = "<p>데이터 로딩 중...</p>";
+
+                        fetch("/myPage/data")
+                            .then((response) => {
+                                if (!response.ok) {
+                                    throw new Error("네트워크 응답에 문제가 있습니다.");
+                                }
+                                return response.json(); // JSON으로 변환
+                            })
+                            .then((data) => {
+                                if (data.likedSites) {
+                                    likedSitesContainer.innerHTML = ""; // 기존 메시지 제거
+                                    data.likedSites.forEach((site) => {
+                                        const button = document.createElement("button");
+                                        button.textContent = site;
+                                        button.classList.add("site-tag");
+                                        likedSitesContainer.appendChild(button);
+                                    });
+                                } else {
+                                    likedSitesContainer.innerHTML = "<p>좋아요를 누른 관광지가 없습니다.</p>";
+                                }
+                            })
+                            .catch((error) => {
+                                likedSitesContainer.innerHTML = "<p>데이터를 불러오는 데 실패했습니다.</p>";
+                                console.error("데이터 요청 오류:", error);
+                            });
+                    })
+                    .catch(error => console.error("좋아요 기록 로드 실패:", error));
+            })
+            .catch(error => console.error("사용자 정보 로드 실패:", error));
+    });
+</script>
+<div id="footer-placeholder"></div>
+<script src="/js/header.js?v=1.0"></script>
+<script src="/js/footer.js?v=1.0"></script>
+</body>
+</html>

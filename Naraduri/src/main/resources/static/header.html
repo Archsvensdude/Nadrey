@@ -1,0 +1,106 @@
+<!-- header.html -->
+<header class="top-bar con-min-width" xmlns="">
+  <div class="menu-icon" id="menuIcon">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div class="con">
+    <script src="js/header.js?v=2.0"></script>
+    <div class="rectangle2"></div>
+    <nav class="top-bar__menu-box-1" id="topMenu">
+      <a href="http://220.67.113.223/">
+        <img src="/image/나들이_프로젝트_그린옐로우.png" width="150" height="125" class="main_logo" id="main_logo">
+      </a>
+      <ul id="markNameAndId">
+        <li class="loggedInLetter" id="loggedInNameShort"> - </li>
+        <li class="loggedInLetter" id="nbsp1"> &nbsp; </li>
+        <li class="loggedInLetter" id="vertical"> | </li>
+        <li class="loggedInLetter" id="nbsp2"> &nbsp; </li>
+        <li class="loggedInLetter" id="loggedInIdShort"> - </li>
+      </ul>
+      <ul id="menu-text-1">
+        <li class=topMenuLi"><a href="/introduction" class="menuLink">개요</a></li>
+        <li class=topMenuLi">
+          <a href="/attraction" class="menuLink">관광지 보기</a>
+          <ul class="sub-menu" id="sub-menu-1">
+            <li><a href="/attraction" class="sub-menuLink">관광지 목록</a></li>
+            <li><a href="/attraction/area" class="sub-menuLink">지역별 명소</a></li>
+            <li><a href="/attraction/theme" class="sub-menuLink">테마별 명소</a></li>
+            <li><a href="/attraction/map" class="sub-menuLink">지도로 찾기</a></li>
+          </ul>
+        </li>
+        <li class=topMenuLi">
+          <a href="/AiSearching" class="menuLink" id="AI_Searching-LatentFont">
+            <img src="/image/AI%20탐색.png" width="115" height="60" class="AI_Searching_logo" id="AI_Searching_logo">AI 탐색
+          </a>
+        </li>
+        <li class=topMenuLi"><a href="/gallery" class="menuLink">갤러리</a></li>
+          <!--<ul class="sub-menu">
+            <li><a href="/gallery" class="sub-menuLink longLink">사진 갤러리</a></li>
+            <li><a href="/gallery/review" class="sub-menuLink longLink">리뷰 게시판</a></li>
+          </ul>-->
+      </ul>
+    </nav>
+    <nav class="top-bar__menu-box-2">
+      <ul id="menu-text-2">
+        <li id="login-item">
+          <a href="/login" class="menu-item" id="menu-text-2-1">로그인</a>
+        </li>
+        <li id="myPageAndLogout-item" style="display: none;">
+          <a href="/myPage" class="menu-item-myPage" id="menu-text-2-2">
+            <img src="/image/마이페이지.svg" width="25" height="25" alt="image" class="postLogoutButton">
+          </a>
+          <ul class="myPageAndLogout-item_submenu" id="menu-text-2-3">
+            <!-- 동적으로 사용자 아이디를 삽입 -->
+            <li class="loggedInLetter" id="loggedInName"> - </li>
+            <li class="loggedInLetter" id="loggedInId"> - </li>
+            <li><a href="/myPage" class="mTopRadiusButton">마이페이지</a></li>
+            <li><a href="javascript:void(0);" onclick="logout()" class="mBottomRadiusButton">로그아웃</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="sidebar" id="sidebar">
+    <nav class="side-bar__menu-box-1">
+      <ul>
+        <li><a href="/introduction">개요</a></li>
+        <li class="has-side_submenu">
+          <a href="/attraction">관광지 보기</a>
+          <ul class="side_submenu" id="side-submenu--attraction">
+            <li><a href="/attraction" class="topRadiusButton">관광지 목록</a></li>
+            <li><a href="/attraction/area">지역별 명소</a></li>
+            <li><a href="/attraction/theme">테마별 명소</a></li>
+            <li><a href="/attraction/map" class="bottomRadiusButton">지도로 찾기</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="/AiSearching" id="AI_Searching-LatentFont--2">
+            <img src="/image/AI%20탐색.png" width="160" height="85" class="AI_Searching_logo--2">AI 탐색</a>
+        </li>
+        <li class="has-side_submenu">
+          <a href="/gallery">갤러리</a>
+          <!--<ul class="side_submenu" id="side-submenu--gallery">
+            <li><a href="/gallery" class="topRadiusButton">사진 갤러리</a></li>
+            <li><a href="/gallery/review" class="bottomRadiusButton">리뷰 게시판</a></li>
+          </ul>-->
+        </li>
+        <br><br>
+        <nav id="loginMenu">
+          <ul id="login-item--2">
+            <li id="login-side-item">
+              <a href="/login" id="sidebar_menu-text-2-1">로그인</a>
+            </li>
+            <li id="myPage-side-item" style="display: none;">
+              <a href="/myPage" id="sidebar_menu-text-2-2">마이페이지</a>
+            </li>
+            <li id="logout-side-item" style="display: none;">
+              <a href="javascript:void(0);" onclick="logout()" id="sidebar_menu-text-2-3">로그아웃</a>
+            </li>
+          </ul>
+        </nav>
+      </ul>
+    </nav>
+  </div>
+</header>

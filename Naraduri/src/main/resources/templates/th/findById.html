@@ -1,0 +1,49 @@
+<link rel="icon" type="image/png" sizes="96x96" href="/image/favicon-96x96.png">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>아이디 찾기</title>
+  <link rel="stylesheet" href="/css/loginFormation.css">
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/footer.css">
+</head>
+<body>
+<div id="header-placeholder"></div>
+<br><br><br><br>
+<h1>아이디 찾기</h1>
+<form method="post" action="/login/findById">
+
+  <label class="input-require for-name">본인의 이름을 입력해주세요.</label>
+  <label for="name"></label>
+  <input type="text" id="name" name="name" placeholder="이름" class="name_box" required>
+  <br><br><br>
+
+  <label class="input-require for-email">이메일을 입력해주세요.</label>
+  <label for="email"></label>
+  <input type="text" id="email" name="email" placeholder="이메일" class="email_box" required>
+  <br><br>
+  <div class="alert">
+    <p th:if="${foundId}" style="color: #4242cc;">아이디: <span th:text="${foundId}"></span></p>
+    <p th:if="${error}" style="color: #dc0000;" th:text="${error}"></p>
+  </div>
+  <p th:if="${foundId}"><a th:href="@{/login}" id="returnToLogin">로그인으로 이동</a></p>
+  <br><br><br>
+  <button type="submit">아이디 찾기</button>
+  <br><br>
+  <a th:href="@{/login/findByPwd}" class="subButton">비밀번호 찾기</a>
+  <span class="subButtonBar">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+  <a th:href="@{/login/signUp}" class="subButton">회원가입</a>
+  <br><br><br>
+  <a th:href="@{/login}" class="subButton Two">로그인으로 돌아가기</a>
+
+</form>
+
+<div id='wrap' class="rectangle3">
+  <div id="footer-placeholder"></div>
+</div>
+<script src="/js/findById.js?v=1.0"></script>
+<script src="/js/header.js?v=1.0"></script>
+<script src="/js/footer.js?v=1.0"></script>
+</body>
+</html>

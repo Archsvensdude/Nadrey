@@ -1,0 +1,325 @@
+#slider {
+    position: relative;
+    width: 100%;
+    max-width: 48.8rem;
+    margin: 80px auto;
+    visibility: hidden;
+
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+    z-index: 1;
+}
+.btn {
+    position: absolute;
+    width: 3rem;
+    height: 100%;
+    top: 44%;
+    transform: translateY(-40%);
+    z-index: 1;
+    border: 0;
+    background: rgba(250, 250, 250, 1);
+    transition: 0.2s;
+    cursor: pointer;
+    font-size: 2rem;
+    background: #c3c3c3;
+    opacity: 0.9;
+    &:hover {
+        background: rgba(250, 250, 250, 1);
+    }
+    &.prev {
+        height: 25rem;
+        margin-left: -12%;
+    }
+    &.next {
+        height: 25rem;
+        right: -12%;
+    }
+}
+
+.wrapper {
+    position: relative;
+    width: 100%;
+    height: 30rem;
+    overflow: hidden;
+    padding: 3px 0;
+    cursor: grab;
+    &.active {
+        cursor: grabbing;
+    }
+}
+
+.wrapper::before, .wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 20px; /* 그라데이션 영역 너비 */
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.wrapper::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+}
+
+.wrapper::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+}
+
+.items {
+    position: absolute;
+    width: 600%; /* itemCount - 1 */
+    left: 0;
+    top: 0;
+    display: flex;
+}
+.items.active {
+    transition: 0.4s;
+}
+.item {
+    transform: translateY(10%);
+    width: 100%;
+    pointer-events: none;
+    position: relative;
+    padding: 0 1rem;
+    .content {
+        width: 600px;
+        height: 404px; /* 자동으로 높이를 조정 */
+        box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.5);
+        border-radius: 30px;
+        border-color: #fff;
+        outline: solid 15px #4242cc;
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 5rem;
+        color: #fff;
+        transform: translate(3%, 0%);
+    }
+}
+
+.item img {
+    position: absolute;
+    width: 600px;
+    height: 404px; /* 자동으로 높이를 조정 */
+    object-fit: cover;
+    z-index: 0;
+    outline: solid 7px #fff;
+    border-radius: 30px;
+    transform: translate(-50%, 0%);
+}
+
+@media (max-width: 978.9px) {
+    #slider {
+        position: relative;
+        width: 100%;
+        max-width: 25.5rem;
+        margin: -100px auto;
+        visibility: hidden;
+
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        user-select:none;
+    }
+
+    .btn {
+        &.prev {
+            height: 15rem;
+            width: 2.5rem;
+            margin-left: -15%;
+        }
+        &.next {
+            height: 15rem;
+            width: 2.5rem;
+            right: -15%;
+        }
+    }
+
+    .wrapper {
+        position: relative;
+        width: 100%;
+        height: 30rem;
+        overflow: hidden;
+        padding: 3px 0;
+        cursor: grab;
+        &.active {
+            cursor: grabbing;
+        }
+    }
+
+    .wrapper::before, .wrapper::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        width: 15px; /* 그라데이션 영역 너비 */
+        height: 100%;
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    .wrapper::before {
+        left: 0;
+        background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+    }
+
+    .wrapper::after {
+        right: 0;
+        background: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+    }
+
+    .items {
+        margin-top: 115px;
+        position: absolute;
+        width: 600%; /* itemCount - 1 */
+        left: 0;
+        top: 0;
+        display: flex;
+    }
+    .items.active {
+        transition: 0.4s;
+    }
+    .item {
+        transform: translateY(10%);
+        width: 100%;
+        pointer-events: none;
+        position: relative;
+        padding: 0 1rem;
+        .content {
+            width: 300px;
+            height: 202px; /* 자동으로 높이를 조정 */
+            border-radius: 20px;
+            border-color: #fff;
+            outline: solid 15px #4242cc;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: #fff;
+            transform: translate(3%, 0%);
+        }
+    }
+
+    .item img {
+        position: absolute;
+        width: 300px;
+        height: 202px; /* 자동으로 높이를 조정 */
+        object-fit: cover;
+        z-index: 0;
+        outline: solid 7px #fff;
+        border-radius: 20px;
+        transform: translate(-50%, 0%);
+    }
+}
+
+@media (max-width: 480px) {
+    #slider {
+        position: relative;
+        width: 100%;
+        max-width: 14rem;
+        margin: -150px auto;
+        visibility: hidden;
+
+        -webkit-user-select:none;
+        -moz-user-select:none;
+        -ms-user-select:none;
+        user-select:none;
+    }
+
+    .btn {
+        &.prev {
+            height: 7rem;
+            width: 1.5rem;
+            font-size: 1.5em;
+            margin-left: -20%;
+        }
+        &.next {
+            height: 7rem;
+            width: 1.5rem;
+            font-size: 1.5em;
+            right: -20%;
+        }
+    }
+
+    .wrapper {
+        position: relative;
+        width: 100%;
+        height: 30rem;
+        overflow: hidden;
+        padding: 3px 0;
+        cursor: grab;
+        &.active {
+            cursor: grabbing;
+        }
+    }
+
+    .wrapper::before, .wrapper::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        width: 15px; /* 그라데이션 영역 너비 */
+        height: 100%;
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    .wrapper::before {
+        left: 0;
+        background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+    }
+
+    .wrapper::after {
+        right: 0;
+        background: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+    }
+
+    .items {
+        margin-top: 165px;
+        position: absolute;
+        width: 600%; /* itemCount - 1 */
+        left: 0;
+        top: 0;
+        display: flex;
+    }
+    .items.active {
+        transition: 0.4s;
+    }
+    .item {
+        transform: translateY(10%);
+        width: 100%;
+        pointer-events: none;
+        position: relative;
+        padding: 0 1rem;
+        .content {
+            width: 150px;
+            height: 101px; /* 자동으로 높이를 조정 */
+            border-radius: 12px;
+            border-color: #fff;
+            outline: solid 10px #4242cc;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: #fff;
+            transform: translate(3%, 0%);
+        }
+    }
+
+    .item img {
+        position: absolute;
+        width: 150px;
+        height: 101px; /* 자동으로 높이를 조정 */
+        object-fit: cover;
+        z-index: 0;
+        outline: solid 5px #fff;
+        border-radius: 12px;
+        transform: translate(-50%, 0%);
+    }
+}

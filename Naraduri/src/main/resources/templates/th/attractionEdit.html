@@ -1,0 +1,101 @@
+<link rel="icon" type="image/png" sizes="96x96" href="/image/favicon-96x96.png">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>관광지 수정</title>
+    <link rel="stylesheet" href="/css/attractionEdit.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+</head>
+<body>
+<div id="header-placeholder"></div>
+
+<form th:action="@{/attraction/edit/{site}(site=${attractionDetail.site})}" th:object="${attractionDetail}" method="post">
+    <br><br><br><br><br><br>
+    <label class="head_site" th:text="${attractionDetail.site}"></label>
+    <label>  </label>
+    <label class="head">&nbsp;수정</label>
+    <br><br><br>
+
+    <label for="theme-select" style="font-weight: bold; display: block; text-align: center;">테마 선택</label>
+    <br><br>
+    <select id="theme-select" class="select-box">
+        <option value="역사·유적지">역사·유적지</option>
+        <option value="문화">문화</option>
+        <option value="자연">자연</option>
+        <option value="레저·액티비티">레저·액티비티</option>
+        <option value="테마파크">테마파크</option>
+        <option value="도심">도심</option>
+    </select>
+    <br><br>
+
+    <label>설명 수정 (100~1000자)</label>
+    <br><br>
+    <label>
+        <textarea th:field="*{content}" minlength="100" maxlength="1000" oninput="updateCharacterCount()" required></textarea>
+        <span id="charCount" class="counter">글자 수: ___ / 1000</span>
+    </label>
+    <br><br>
+
+    <h2>위치 정보</h2>
+    <label>권역 선택:</label>
+    <br><br>
+    <label>
+        <input type="text" class="selectRegion" th:field="*{region}" required/>
+    </label>
+    <br><br>
+
+    <label>광역 선택</label>
+    <br><br>
+    <label th:switch="${state}">
+        <input type="text" class="selectRegion" th:field="*{state}" required th:value="${attractionDetail.state == 'SEOUL' ? '서울특별시' : attractionDetail.state}" />
+    </label>
+    <br><br>
+
+    <label>지역 선택</label>
+    <br><br>
+    <label>
+        <input type="text" class="selectRegion" th:field="*{municipality}" required th:value="${attractionDetail.municipality == 'SEONGDONG' ? '성동구' : attractionDetail.municipality}" />
+    </label>
+    <br><br>
+
+    <h2>사진 수정</h2>
+    <label>사진 1 수정</label>
+    <br><br>
+    <label>
+        <input type="text" class="picture" th:field="*{picture1}"/>
+    </label>
+    <br><br>
+
+    <label>사진 2 수정</label>
+    <br><br>
+    <label>
+        <input type="text" class="picture" th:field="*{picture2}"/>
+    </label>
+    <br><br>
+
+    <label>사진 3 수정</label>
+    <br><br>
+    <label>
+        <input type="text" class="picture" th:field="*{picture3}"/>
+    </label>
+    <br><br>
+
+    <label>사진 4 수정</label>
+    <br><br>
+    <label>
+        <input type="text" class="picture" th:field="*{picture4}"/>
+    </label>
+    <br><br>
+
+    <div class="editAttractionButton">
+    <button type="submit" class="editAttraction">수정하기</button>
+    </div>
+</form>
+<div id="footer-placeholder"></div>
+<script src="/js/attractionEdit.js?v=1.0"></script>
+<script src="/js/header.js?v=1.0"></script>
+<script src="/js/footer.js?v=1.0"></script>
+</body>
+</html>

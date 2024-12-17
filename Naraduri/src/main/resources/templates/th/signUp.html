@@ -1,0 +1,129 @@
+<link rel="icon" type="image/png" sizes="96x96" href="/image/favicon-96x96.png">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>회원가입</title>
+  <link rel="stylesheet" href="/css/loginFormation.css">
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/footer.css">
+</head>
+<body>
+<div id="header-placeholder"></div>
+<br><br><br><br>
+<h1>회원가입</h1>
+
+<form method="post" action="/login/signUp">
+  <label class="input-require for-name">본인의 이름을 입력해주세요.</label>
+  <label for="name"></label>
+  <input type="text" id="name" name="name" placeholder="이름" class="name_box" required>
+  <br><br><br>
+  <div class="input-container id">
+  <label class="input-require for-id">새 아이디를 입력해주세요.</label>
+    <div class="input-wrapper id">
+      <label for="username"></label>
+      <input type="text" id="username" name="username" placeholder="새 아이디" class="new-id_box" required>
+      <button class="check-button-1">중복 확인</button>
+    </div>
+    <p id="usernameCheckMessage" class="error-message"></p>
+    <br>
+    <div th:if="${error1}" class="error-message">
+      <p th:text="${error1}"></p>
+    </div>
+  </div>
+  <br><br>
+  <label class="input-require for-pwd">새 비밀번호를 입력해주세요.</label>
+  <label for="password"></label>
+  <input type="password" id="password" name="password" placeholder="새 비밀번호" class="new-pwd_box" required>
+  <br><br><br>
+  <label class="input-require for-confirm-pwd">비밀번호를 확인해주세요.</label>
+  <label for="confirmPassword"></label>
+  <input type="password" id="confirmPassword" name="confirmPassword" placeholder="비밀번호 확인" class="confirm-pwd_box" required>
+  <br>
+  <p id="passwordMatchMessage" class="error-message"></p>
+  <br><br>
+  <label for="email"></label>
+  <div class="input-container email">
+    <label class="input-require for-email">이메일을 입력해주세요.</label>
+    <div class="input-wrapper email">
+      <input type="text" id="email" name="email" placeholder="이메일" class="email_box" required>
+      <button class="check-button-2">중복 확인</button>
+    </div>
+    <br>
+    <div th:if="${error2}" class="error-message">
+      <p th:text="${error2}"></p>
+    </div>
+  </div>
+  <br><br>
+  <label class="input-require for-birth">생년월일을 입력해주세요.</label>
+  <div class="birth-selection">
+    <label for="year"></label>
+    <select id="year" name="year" required>
+      <option value="">선택</option>
+      <script>
+        const currentYear = new Date().getFullYear();
+        for (let year = currentYear; year >= 1900; year--) {
+          document.write(`<option value="${year}">${year}</option>`);
+        }
+      </script>
+    </select>
+
+    <label>&nbsp;년</label>
+
+    <label for="month">&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;</label>
+    <select id="month" name="month" required>
+      <option value="">선택</option>
+      <option value="01">1</option>
+      <option value="02">2</option>
+      <option value="03">3</option>
+      <option value="04">4</option>
+      <option value="05">5</option>
+      <option value="06">6</option>
+      <option value="07">7</option>
+      <option value="08">8</option>
+      <option value="09">9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+    </select>
+
+    <label>&nbsp;월</label>
+
+    <label for="day">&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;</label>
+    <select id="day" name="day" required>
+      <option value="">선택</option>
+      <script>
+        for (let day = 1; day <= 31; day++) {
+          const dayFormatted = day < 10 ? `0${day}` : day;
+          document.write(`<option value="${dayFormatted}">${day}</option>`);
+        }
+      </script>
+    </select>
+
+    <label>&nbsp;일</label>
+  </div>
+  <!-- userlikes 필드 추가 -->
+
+  <label for="userLikes1"></label>
+  <input type="number" id="userLikes1" name="userLikes" value="0">
+  <!-- 숨겨진 birth 필드 -->
+  <input type="hidden" id="birth" name="birth">
+
+  <br><br><br><br>
+  <button type="submit">회원가입</button>
+  <br><br>
+  <a th:href="@{/login/findById}" class="subButton">아이디 찾기</a>
+  <span class="subButtonBar">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+  <a th:href="@{/login/findByPwd}" class="subButton">비밀번호 찾기</a>
+  <br><br><br>
+  <a th:href="@{/login}" class="subButton Two">로그인으로 돌아가기</a>
+
+</form>
+<div id='wrap' class="rectangle3">
+  <div id="footer-placeholder"></div>
+</div>
+<script src="/js/signUp.js?v=1.0"></script>
+<script src="/js/header.js?v=1.0"></script>
+<script src="/js/footer.js?v=1.0"></script>
+</body>
+</html>
